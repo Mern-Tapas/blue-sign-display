@@ -1,0 +1,230 @@
+/* Diagonal hatched fill — from the striped chart bars in the inspiration */
+@utility bg-hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, currentColor 22%, transparent) 0 2px,
+    transparent 2px 7px
+  );
+}
+
+/* Tabular figures for prices / stats */
+@utility figures {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Skeleton shimmer — its own tokens so it reads on both surface and canvas */
+@utility shimmer {
+  background-color: var(--skeleton);
+  background-image: linear-gradient(
+    90deg,
+    var(--skeleton) 0%,
+    var(--skeleton-shine) 50%,
+    var(--skeleton) 100%
+  );
+  background-size: 200% 100%;
+}
+
+/* Mono code role — coupon codes, AWB numbers, token names (text-* tokens can't set a family) */
+@utility text-code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/*
+ * Inline meta with "·" separators that never dangle when the row wraps. Each item after a gap
+ * draws its own dot in the gutter; the gutter of the first item on every line sits in a clipped
+ * 1rem strip, so a wrapped line never starts (or the previous one ends) with a dot. Explicit
+ * <span aria-hidden>·</span> children are hidden in favour of the drawn ones.
+ */
+@utility meta-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 0.25rem;
+  margin-inline-start: -1rem;
+  clip-path: inset(-0.5rem -0.5rem -0.5rem 1rem);
+  & > [aria-hidden="true"] {
+    display: none;
+  }
+  & > * {
+    position: relative;
+    margin-inline-start: 1rem;
+  }
+  & > :not([aria-hidden="true"])::before {
+    content: "·";
+    position: absolute;
+    inset-inline-start: -0.625rem;
+    top: 50%;
+    translate: 0 -50%;
+    color: var(--fg-muted);
+  }
+  /* A pill already reads as its own unit: no dot on either side of it. */
+  & > [data-slot="status-pill"]::before,
+  & > [data-slot="status-pill"] + *::before {
+    content: none;
+  }
+}
+
+/* Full-bleed container with design-system gutter */
+@utility container-ds {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Hide scrollbars on horizontal rails */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Interaction primitives
+   --------------------------------------------------------------------- */
+
+/* ---- Focus (one language, three placements) --------------------------------
+   Default: the global :focus-visible ring (2px, 2px gap) — add nothing.
+   focus-ring        restores the default ring where a component reset outlines
+   focus-ring-inset  text-field shells: ring sits on the 1px border
+   focus-ring-row    full-bleed rows / menu items inside clipped containers
+   focus-ring-card   stretched-link cards: rings the card via the link's ::after overlay */
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility focus-ring-inset {
+  &:focus-within:has(:focus-visible),
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: -1px;
+  }
+}
+
+@utility focus-ring-row {
+  &:focus-visible,
+  &[data-force-state="focus"] {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: -2px;
+  }
+}
+
+@utility focus-ring-card {
+  &:focus-visible {
+    outline: none;
+  }
+  &:focus-visible::after {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: var(--focus-card-radius, var(--radius-2xl));
+  }
+}
+
+/* Selected option / card / row (D-036): soft fill + 2px ring drawn inside the edge.
+   Apply with a state variant: aria-checked:selected, data-[state=checked]:selected. */
+@utility selected {
+  background-color: var(--selected-bg);
+  box-shadow: inset 0 0 0 2px var(--selected-ring);
+}
+
+/* State layer: a currentColor overlay that works on any fill (white text on accent
+   lightens, dark text on white darkens). Uses ::before so ::after stays free for hit-area.
+   Requires a positioned element (components add `relative` or `absolute` themselves —
+   utilities never set `position`, so they can't fight layout classes). */
+@utility state-layer {
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-color: currentColor;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    &:hover::before {
+      opacity: var(--state-hover-opacity);
+    }
+  }
+
+  &:active::before,
+  &[data-state="open"]::before,
+  &[data-force-state="active"]::before {
+    opacity: var(--state-pressed-opacity);
+  }
+
+  /* Docs state matrices: render hover without a pointer */
+  &[data-force-state="hover"]::before {
+    opacity: var(--state-hover-opacity);
+  }
+
+  &:disabled::before,
+  &[aria-disabled="true"]::before {
+    opacity: 0;
+  }
+}
+
+/* Expands the tappable area to 44×44 on coarse pointers without changing visuals.
+   Requires a positioned element (relative/absolute). */
+@utility hit-area {
+  @media (pointer: coarse) {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: max(100%, var(--hit-min));
+      height: max(100%, var(--hit-min));
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+/* Press feedback — subtle scale on :active. Sets no transition itself: the component's
+   own transition list must include `transform` (avoids utilities overriding each other). */
+@utility press {
+  &[data-force-state="active"],
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    transform: scale(0.97);
+  }
+  /* Reduced motion: the state layer still confirms the press; no size change */
+  @media (prefers-reduced-motion: reduce) {
+    &:active:not(:disabled) {
+      transform: none;
+    }
+  }
+}
+
+/* Hover lift for interactive cards — hover-capable devices only.
+   Rises one tier (card → card-hover), never to popover depth. */
+@utility lift {
+  transition-property: transform, box-shadow;
+  transition-duration: var(--dur-base);
+  transition-timing-function: var(--ease-out);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--elev-card-hover);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      transform: none;
+    }
+  }
+}

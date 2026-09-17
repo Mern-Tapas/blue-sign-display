@@ -1,0 +1,343 @@
+{
+  "projectId": "859b729c-efe2-4f99-b7e1-6ba301f978e8",
+  "shape": "package",
+  "pkg": "@bluesigns/ui",
+  "globalName": "BlueSignsUI",
+  "entry": "design-system/index.ts",
+  "buildCmd": "node design-system/scripts/gen-entry.mjs && node design-system/scripts/build-css.mjs",
+  "srcDir": "../components",
+  "tsconfig": "tsconfig.json",
+  "cssEntry": "dist/styles.css",
+  "extraFonts": [
+    "fonts/fonts.css"
+  ],
+  "guidelinesGlob": [
+    "../DESIGN.md"
+  ],
+  "provider": {
+    "component": "Providers"
+  },
+  "libOverrides": {
+    "source-kit.mjs": "exact src files + groups from the generated design-system/index.ts barrel (multi-export files, admin/* vs orders collision, ui/ kind groups)"
+  },
+  "overrides": {
+    "Dialog": {
+      "cardMode": "single",
+      "primaryStory": "ShippingAddress",
+      "viewport": "720x560"
+    },
+    "AdjustPriceDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "AdjustStockDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "ImportCsvDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "SendCouponDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "ChangeBankDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "CancelOrderAdminDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "RejectReturnDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "ShipOrderDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "InviteMemberDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "CommandPalette": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DateRangePicker": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "LoginPromptSheet": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "CouponSheet": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "MiniBagPopover": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "AddressDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "CartDrawer": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "Combobox": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DatePicker": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "AccountMenu": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "MegaMenu": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "MobileCategoryMenu": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "MobileFilterSheet": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "QuickViewDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "SortSheet": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "NotificationCenter": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "CancelOrderDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "AlertDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "AlertDialogAction": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "AlertDialogCancel": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "AlertDialogContent": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "AlertDialogFooter": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "AlertDialogTrigger": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "ConfirmDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DialogBody": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DialogClose": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DialogContent": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DialogFooter": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DialogHeader": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DialogOverlay": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DialogTrigger": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenu": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuCheckboxItem": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuContent": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuGroup": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuItem": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuLabel": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuRadioGroup": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuRadioItem": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuSeparator": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuSub": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuSubContent": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuSubTrigger": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "DropdownMenuTrigger": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "HoverCard": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "HoverCardContent": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "HoverCardTrigger": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "Popover": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "PopoverAnchor": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "PopoverClose": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "PopoverContent": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "PopoverTrigger": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "Sheet": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "SheetBody": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "SheetClose": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "SheetContent": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "SheetFooter": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "SheetHeader": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "SheetTrigger": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "Tooltip": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "PaymentProcessingOverlay": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "EmiOptionsDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "SizeChartDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "ReviewMediaLightbox": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "WriteReviewDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "SearchOverlay": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "ChatLauncher": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "CookieConsent": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    },
+    "MoveToBagSizeDialog": {
+      "cardMode": "single",
+      "viewport": "900x700"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}

@@ -1,0 +1,38 @@
+/* BlueSigns library stylesheet: the app's tokens + every Tailwind utility the components use,
+   compiled by design-system/scripts/build-css.mjs into design-system/dist/styles.css. */
+@import "tailwindcss" source(none);
+@import "../styles/tokens.css";
+@import "../styles/theme.css";
+@import "../styles/base.css";
+@import "../styles/utilities.css";
+
+@source "../components";
+@source "../lib";
+@source "../.design-sync/previews";
+
+/* Layout glue for designs built with the library (classes the components themselves may not use). */
+@source inline("{sm:,md:,lg:,xl:,}{flex,inline-flex,grid,block,inline-block,hidden,contents}");
+@source inline("{sm:,md:,lg:,xl:,}{flex-row,flex-col,flex-wrap,flex-1,flex-none,shrink-0,grow,items-start,items-center,items-end,items-stretch,items-baseline,justify-start,justify-center,justify-end,justify-between,self-start,self-center,self-end,self-stretch,place-items-center}");
+@source inline("{sm:,md:,lg:,xl:,}grid-cols-{1..12}");
+@source inline("{sm:,md:,lg:,xl:,}col-span-{1..12}");
+@source inline("{sm:,md:,lg:,xl:,}{gap,gap-x,gap-y,space-y,space-x}-{0,0.5,1,1.5,2,2.5,3,4,5,6,8,10,12,16}");
+@source inline("{sm:,md:,lg:,}{p,px,py,pt,pr,pb,pl,m,mx,my,mt,mr,mb,ml}-{0,0.5,1,1.5,2,2.5,3,4,5,6,8,10,12,16,20,24}");
+@source inline("{mx,ml,mr}-auto");
+@source inline("{sm:,md:,lg:,}{w,h,min-h,max-w,min-w}-{full,screen,auto,fit,0,px}");
+@source inline("{sm:,md:,lg:,}{w,h,size}-{1,2,3,4,5,6,8,10,12,16,20,24,32,40,48,64,80,96}");
+@source inline("max-w-{xs,sm,md,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,prose}");
+@source inline("{sm:,md:,lg:,}{w,basis}-{1/2,1/3,2/3,1/4,3/4}");
+@source inline("{min-h-dvh,min-h-screen,h-dvh,aspect-square,aspect-video,object-cover,object-contain,overflow-hidden,overflow-auto,overflow-x-auto,overflow-y-auto,truncate,line-clamp-2,line-clamp-3,whitespace-nowrap,break-words}");
+@source inline("{relative,absolute,fixed,sticky,inset-0,top-0,bottom-0,left-0,right-0,z-10,z-20}");
+@source inline("{text-left,text-center,text-right,uppercase,capitalize,font-normal,font-medium,font-semibold,underline,tabular-nums}");
+@source inline("{hover:,}{bg,text,border,fill,stroke}-{canvas,surface,surface-sunken,surface-raised,surface-hover,surface-contrast,surface-inverse,accent,accent-soft,accent-fg,accent-soft-fg,secondary,secondary-soft,secondary-fg,success,success-soft,success-fg,warning,warning-soft,warning-fg,danger,danger-soft,danger-fg,info,info-soft,info-fg,fg,fg-muted,fg-subtle,fg-inverse,fg-on-accent,fg-on-secondary,fg-on-contrast,fg-on-contrast-muted,border,border-subtle,border-strong}");
+@source inline("text-{display-2xl,display-xl,display-lg,heading-lg,heading-md,heading-sm,title,body-lg,body,body-strong,label,caption,caption-strong,overline,figure-xl,figure-lg,code}");
+@source inline("{sm:,md:,lg:,}{rounded,rounded-t,rounded-b}-{xs,sm,md,lg,xl,2xl,pill}");
+@source inline("shadow-{flat,xs,card,card-hover,popover,modal}");
+@source inline("{border,border-t,border-b,border-l,border-r,divide-y,divide-x}");
+
+/* next/font sets these on <html> in the app; designs get the same families from fonts.css. */
+:root {
+  --font-geist-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-geist-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+}

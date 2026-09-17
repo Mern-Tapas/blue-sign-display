@@ -1,0 +1,646 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-16T12:00:00+05:30",
+  "title": "Design System: BlueSigns",
+  "extensions": {
+    "colorMeta": {
+      "signs-blue": {
+        "role": "primary",
+        "displayName": "Signs Blue",
+        "canonical": "#0079bc",
+        "tonalRamp": [
+          "#022137",
+          "#093a5a",
+          "#074d78",
+          "#0f6195",
+          "#0079bc",
+          "#53adef",
+          "#c1e3ff",
+          "#f0f8ff"
+        ]
+      },
+      "signs-blue-soft": {
+        "role": "primary",
+        "displayName": "Blue Mist",
+        "canonical": "#f0f8ff",
+        "tonalRamp": [
+          "#022137",
+          "#093a5a",
+          "#0f6195",
+          "#037ec2",
+          "#8cccff",
+          "#c1e3ff",
+          "#e0f1ff",
+          "#f0f8ff"
+        ]
+      },
+      "logo-blue": {
+        "role": "primary",
+        "displayName": "Logo Blue",
+        "canonical": "#037ec2"
+      },
+      "signal-yellow": {
+        "role": "secondary",
+        "displayName": "Signal Yellow",
+        "canonical": "#ffca08",
+        "tonalRamp": [
+          "#705700",
+          "#967600",
+          "#c29900",
+          "#e7b700",
+          "#ffca08",
+          "#ffd665",
+          "#ffe6a5",
+          "#fffaec"
+        ]
+      },
+      "counter-grey": {
+        "role": "neutral",
+        "displayName": "Counter Grey",
+        "canonical": "#edeef0",
+        "tonalRamp": [
+          "#10181e",
+          "#1e2a33",
+          "#303b45",
+          "#4a555e",
+          "#919da7",
+          "#bec6ce",
+          "#e3e7eb",
+          "#f1f4f6"
+        ]
+      },
+      "tray-white": {
+        "role": "neutral",
+        "displayName": "Tray White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#10181e",
+          "#303b45",
+          "#616c76",
+          "#919da7",
+          "#d8dee3",
+          "#edeef0",
+          "#f7f8fa",
+          "#ffffff"
+        ]
+      },
+      "graphite-ink": {
+        "role": "neutral",
+        "displayName": "Graphite Ink",
+        "canonical": "#10181e",
+        "tonalRamp": [
+          "#0a0f14",
+          "#10181e",
+          "#13202a",
+          "#1e2a33",
+          "#303b45",
+          "#4a555e",
+          "#616c76",
+          "#919da7"
+        ]
+      },
+      "slate-muted": {
+        "role": "neutral",
+        "displayName": "Slate Muted",
+        "canonical": "#616c76"
+      },
+      "night-panel": {
+        "role": "neutral",
+        "displayName": "Night Panel",
+        "canonical": "#13202a"
+      },
+      "night-surface": {
+        "role": "neutral",
+        "displayName": "Night Surface (dark theme)",
+        "canonical": "#141c22",
+        "tonalRamp": [
+          "#060a0e",
+          "#141c22",
+          "#1a252d",
+          "#1f2c36",
+          "#25333f",
+          "#2c3d4b",
+          "#99a4ae",
+          "#f0f3f5"
+        ]
+      },
+      "savings-green": {
+        "role": "status",
+        "displayName": "Savings Green",
+        "canonical": "#187f45",
+        "tonalRamp": [
+          "#0f4a28",
+          "#166e3c",
+          "#187f45",
+          "#1b8a4b",
+          "#22a55b",
+          "#6fd39a",
+          "#c2ecd3",
+          "#ebf8f0"
+        ]
+      },
+      "stock-amber": {
+        "role": "status",
+        "displayName": "Stock Amber",
+        "canonical": "#f5a524",
+        "tonalRamp": [
+          "#5c3a00",
+          "#8f5b00",
+          "#c98100",
+          "#f5a524",
+          "#f8bb55",
+          "#fbcf7c",
+          "#fde5b8",
+          "#fff6e5"
+        ]
+      },
+      "sale-red": {
+        "role": "status",
+        "displayName": "Sale Red",
+        "canonical": "#cd2b31",
+        "tonalRamp": [
+          "#6e161b",
+          "#a8232a",
+          "#cd2b31",
+          "#e5484d",
+          "#ee7478",
+          "#f59ea1",
+          "#fac9ca",
+          "#fdeeee"
+        ]
+      },
+      "info-blue": {
+        "role": "status",
+        "displayName": "Info Blue",
+        "canonical": "#2563eb",
+        "tonalRamp": [
+          "#13307a",
+          "#1d4ed8",
+          "#2563eb",
+          "#3b82f6",
+          "#669ff8",
+          "#93bbfb",
+          "#c6dafd",
+          "#ebf3ff"
+        ]
+      },
+      "rating-amber": {
+        "role": "status",
+        "displayName": "Rating Amber",
+        "canonical": "#c98100"
+      },
+      "chart-1": {
+        "role": "chart",
+        "displayName": "Chart slot 1 · Blue",
+        "canonical": "#037ec2",
+        "darkTheme": "#53adef"
+      },
+      "chart-2": {
+        "role": "chart",
+        "displayName": "Chart slot 2 · Aqua",
+        "canonical": "#1baf7a",
+        "darkTheme": "#199e70"
+      },
+      "chart-3": {
+        "role": "chart",
+        "displayName": "Chart slot 3 · Orange",
+        "canonical": "#eb6834",
+        "darkTheme": "#d95926"
+      },
+      "chart-4": {
+        "role": "chart",
+        "displayName": "Chart slot 4 · Purple",
+        "canonical": "#aa7fe4",
+        "darkTheme": "#a272d4"
+      },
+      "chart-5": {
+        "role": "chart",
+        "displayName": "Chart slot 5 · Magenta",
+        "canonical": "#e87ba4",
+        "darkTheme": "#d55181"
+      },
+      "chart-6": {
+        "role": "chart",
+        "displayName": "Chart slot 6 · Yellow",
+        "canonical": "#e7b700",
+        "darkTheme": "#d4a813"
+      },
+      "chart-other": {
+        "role": "chart",
+        "displayName": "Chart Other",
+        "canonical": "#919da7",
+        "darkTheme": "#65717b"
+      },
+      "chart-ord-1": {
+        "role": "chart",
+        "displayName": "Ordinal ramp (5 blue steps, stages)",
+        "canonical": "#8cccff",
+        "tonalRamp": [
+          "#8cccff",
+          "#53adef",
+          "#037ec2",
+          "#0f6195",
+          "#093a5a"
+        ]
+      },
+      "chart-seq-1": {
+        "role": "chart",
+        "displayName": "Sequential ramp (7 blue steps, magnitude)",
+        "canonical": "#f0f8ff",
+        "tonalRamp": [
+          "#f0f8ff",
+          "#c1e3ff",
+          "#8cccff",
+          "#53adef",
+          "#037ec2",
+          "#0f6195",
+          "#093a5a"
+        ]
+      },
+      "chart-div-neg": {
+        "role": "chart",
+        "displayName": "Diverging negative · Orange",
+        "canonical": "#eb6834",
+        "darkTheme": "#d95926"
+      },
+      "chart-div-pos": {
+        "role": "chart",
+        "displayName": "Diverging positive · Blue",
+        "canonical": "#037ec2",
+        "darkTheme": "#53adef"
+      },
+      "chart-grid": {
+        "role": "chart",
+        "displayName": "Gridline",
+        "canonical": "#e3e7eb",
+        "darkTheme": "#1f2c36"
+      },
+      "chart-axis": {
+        "role": "chart",
+        "displayName": "Axis / zero line",
+        "canonical": "#bec6ce",
+        "darkTheme": "#2c3d4b"
+      }
+    },
+    "typographyMeta": {
+      "display-lg": {
+        "displayName": "Display",
+        "purpose": "Page titles (h1) with a muted second phrase; larger display steps for heroes."
+      },
+      "heading-lg": {
+        "displayName": "Headline",
+        "purpose": "Store section headings."
+      },
+      "heading-md": {
+        "displayName": "Headline · dialog",
+        "purpose": "Dialog and sheet titles, docs sections."
+      },
+      "heading-sm": {
+        "displayName": "Headline · step",
+        "purpose": "Steps or panels inside a flow (checkout)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section titles inside cards and panels."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default running text."
+      },
+      "body-strong": {
+        "displayName": "Body strong",
+        "purpose": "List-item titles, names, key values."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons, field labels, tabs, nav."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Meta, hints, timestamps."
+      },
+      "overline": {
+        "displayName": "Overline",
+        "purpose": "Table headers and nav group labels only."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Coupon codes, AWB numbers, token names."
+      },
+      "figure-xl": {
+        "displayName": "Figure",
+        "purpose": "Prices and stats with tabular numerals."
+      },
+      "figure-lg": {
+        "displayName": "Figure · KPI",
+        "purpose": "KPI tile values and dashboard stats, tabular numerals."
+      }
+    },
+    "shadows": [
+      {
+        "name": "flat",
+        "value": "0 0 0 1px rgb(5 24 39 / 0.08)",
+        "purpose": "Toolbars, grouped lists, insets, docs frames."
+      },
+      {
+        "name": "xs",
+        "value": "0 0 0 1px rgb(5 24 39 / 0.08), 0 1px 2px rgb(5 24 39 / 0.06)",
+        "purpose": "Active segment in segmented controls and tabs."
+      },
+      {
+        "name": "card",
+        "value": "0 0 0 1px rgb(5 24 39 / 0.08), 0 1px 2px rgb(5 24 39 / 0.04), 0 4px 14px -6px rgb(5 24 39 / 0.08)",
+        "purpose": "Resting content cards and the header bar."
+      },
+      {
+        "name": "card-hover",
+        "value": "0 0 0 1px rgb(5 24 39 / 0.12), 0 2px 4px rgb(5 24 39 / 0.05), 0 14px 28px -12px rgb(5 24 39 / 0.16)",
+        "purpose": "Interactive card on hover with a 2px lift."
+      },
+      {
+        "name": "popover",
+        "value": "0 0 0 1px rgb(5 24 39 / 0.12), 0 2px 6px rgb(5 24 39 / 0.06), 0 16px 36px -12px rgb(5 24 39 / 0.2)",
+        "purpose": "Menus, selects, popovers, toasts."
+      },
+      {
+        "name": "modal",
+        "value": "0 0 0 1px rgb(5 24 39 / 0.12), 0 8px 20px -8px rgb(5 24 39 / 0.12), 0 32px 72px -20px rgb(5 24 39 / 0.3)",
+        "purpose": "Dialogs and sheets."
+      },
+      {
+        "name": "dark-card",
+        "value": "0 0 0 1px rgb(255 255 255 / 0.08), inset 0 1px 0 rgb(255 255 255 / 0.04), 0 2px 8px rgb(0 0 0 / 0.3)",
+        "purpose": "Dark theme card tier; every dark tier carries the 1px top highlight."
+      }
+    ],
+    "motion": [
+      {
+        "name": "dur-instant",
+        "value": "100ms",
+        "purpose": "Menu highlight, state layer on dense UI."
+      },
+      {
+        "name": "dur-fast",
+        "value": "160ms",
+        "purpose": "Hover, press, exits; default for any transition."
+      },
+      {
+        "name": "dur-base",
+        "value": "220ms",
+        "purpose": "Popovers, menus, enters, card lift."
+      },
+      {
+        "name": "dur-slow",
+        "value": "320ms",
+        "purpose": "Sheets, drawers, progress fills."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Enter, hover, press; default easing."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "Movement of something already on screen."
+      },
+      {
+        "name": "ease-drawer",
+        "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "Sheets and drawers."
+      },
+      {
+        "name": "press-scale",
+        "value": "scale(0.97)",
+        "purpose": "Pressed controls; removed under reduced motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "slides and pops become fades; loops stop; spinners slow to 1.6s",
+        "purpose": "prefers-reduced-motion behaviour."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "2xl",
+        "value": "1536px"
+      },
+      {
+        "name": "admin-sidebar",
+        "value": "1024px (sidebar becomes a fixed rail; a sheet below)"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one blue action per view: Add to bag, Place order, Pay.",
+      "html": "<button class=\"ds-btn ds-btn-primary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M16 10a4 4 0 0 1-8 0\"/><path d=\"M3.103 6.034h17.794\"/><path d=\"M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z\"/></svg>Add to bag</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 20px; border-radius: 9999px; border: 0; font: 500 14px/20px Geist, ui-sans-serif, system-ui, sans-serif; cursor: pointer; transition: background-color 160ms cubic-bezier(0.23,1,0.32,1), transform 160ms cubic-bezier(0.23,1,0.32,1); } .ds-btn-primary { background: #0079bc; color: #ffffff; } .ds-btn-primary:hover { background: #0f6195; } .ds-btn-primary:active { background: #074d78; transform: scale(0.97); } .ds-btn:focus-visible { outline: 2px solid #0079bc; outline-offset: 2px; } .ds-btn:disabled { background: #e3e7eb; color: #76818b; cursor: not-allowed; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "White pill with a hairline for every non-primary action.",
+      "html": "<button class=\"ds-btn2\">Save for later</button>",
+      "css": ".ds-btn2 { position: relative; display: inline-flex; align-items: center; height: 40px; padding: 0 20px; border-radius: 9999px; background: #ffffff; color: #10181e; border: 1px solid rgb(5 24 39 / 0.11); font: 500 14px/20px Geist, ui-sans-serif, system-ui, sans-serif; cursor: pointer; transition: background-color 160ms cubic-bezier(0.23,1,0.32,1), transform 160ms cubic-bezier(0.23,1,0.32,1); } .ds-btn2:hover { background: #f1f4f6; } .ds-btn2:active { background: #e3e7eb; transform: scale(0.97); } .ds-btn2:focus-visible { outline: 2px solid #0079bc; outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Pill field on the 40px control scale with an inset focus ring; invalid turns the edge and ring red.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">PIN code</span><span class=\"ds-input\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg><input placeholder=\"560001\" inputmode=\"numeric\" /></span></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: Geist, ui-sans-serif, system-ui, sans-serif; } .ds-field-label { font: 500 13px/18px inherit; color: #10181e; } .ds-input { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 9999px; background: #ffffff; border: 1px solid rgb(5 24 39 / 0.11); color: #616c76; transition: border-color 160ms cubic-bezier(0.23,1,0.32,1); } .ds-input:hover { border-color: rgb(5 24 39 / 0.2); } .ds-input:focus-within { outline: 2px solid #0079bc; outline-offset: -1px; } .ds-input input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: 400 14px/20px inherit; color: #10181e; } .ds-input input::placeholder { color: #616c76; }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Toggle chip; selected uses the shared selection language (Blue Mist + 2px blue ring).",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" aria-pressed=\"false\">Under ₹999</button><button class=\"ds-chip\" aria-pressed=\"true\">4★ & above</button></div>",
+      "css": ".ds-chips { display: flex; gap: 8px; } .ds-chip { height: 32px; padding: 0 12px; border-radius: 9999px; background: #ffffff; color: #10181e; border: 1px solid rgb(5 24 39 / 0.11); font: 500 13px/18px Geist, ui-sans-serif, system-ui, sans-serif; cursor: pointer; transition: background-color 160ms cubic-bezier(0.23,1,0.32,1), box-shadow 160ms cubic-bezier(0.23,1,0.32,1); } .ds-chip:hover { border-color: rgb(5 24 39 / 0.2); } .ds-chip[aria-pressed=\"true\"] { background: #f0f8ff; color: #0f6195; border-color: transparent; box-shadow: inset 0 0 0 2px #0079bc; } .ds-chip:focus-visible { outline: 2px solid #0079bc; outline-offset: 2px; }"
+    },
+    {
+      "name": "Card with Inset",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "White tray at card depth holding a flat grey inset; radii step down 28 → 20.",
+      "html": "<section class=\"ds-card\"><h3 class=\"ds-card-title\">Price details</h3><div class=\"ds-inset\"><p><span>Total MRP</span><span>₹25,596</span></p><p><span>Discount on MRP</span><span class=\"ds-save\">−₹4,000</span></p></div><p class=\"ds-total\"><span>Total amount</span><span>₹21,605</span></p></section>",
+      "css": ".ds-card { display: flex; flex-direction: column; gap: 16px; max-width: 340px; padding: 24px; border-radius: 28px; background: #ffffff; color: #10181e; font-family: Geist, ui-sans-serif, system-ui, sans-serif; box-shadow: 0 0 0 1px rgb(5 24 39 / 0.08), 0 1px 2px rgb(5 24 39 / 0.04), 0 4px 14px -6px rgb(5 24 39 / 0.08); } .ds-card-title { margin: 0; font: 500 16px/22px inherit; letter-spacing: -0.011em; } .ds-inset { display: flex; flex-direction: column; gap: 8px; padding: 16px; border-radius: 20px; background: #f1f4f6; box-shadow: 0 0 0 1px rgb(5 24 39 / 0.08); } .ds-inset p, .ds-total { display: flex; justify-content: space-between; margin: 0; font: 400 14px/20px inherit; font-variant-numeric: tabular-nums; } .ds-inset span:first-child { color: #616c76; } .ds-save { color: #166e3c; } .ds-total { font: 500 16px/22px inherit; }"
+    },
+    {
+      "name": "Selectable Card",
+      "kind": "custom",
+      "refersTo": "selectable-card-selected",
+      "description": "Address / payment / slot choice: radio dot, soft blue fill and 2px ring when selected.",
+      "html": "<div class=\"ds-options\" role=\"radiogroup\" aria-label=\"Payment\"><button class=\"ds-option\" role=\"radio\" aria-checked=\"true\"><span class=\"ds-dot\"></span><span><strong>UPI</strong><small>GPay, PhonePe, Paytm</small></span></button><button class=\"ds-option\" role=\"radio\" aria-checked=\"false\"><span class=\"ds-dot\"></span><span><strong>Cash on Delivery</strong><small>₹19 handling fee</small></span></button></div>",
+      "css": ".ds-options { display: grid; gap: 12px; max-width: 320px; font-family: Geist, ui-sans-serif, system-ui, sans-serif; } .ds-option { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 24px; background: #ffffff; border: 1px solid rgb(5 24 39 / 0.11); text-align: left; cursor: pointer; transition: background-color 160ms cubic-bezier(0.23,1,0.32,1), box-shadow 160ms cubic-bezier(0.23,1,0.32,1); } .ds-option:hover { border-color: rgb(5 24 39 / 0.2); } .ds-option[aria-checked=\"true\"] { background: #f0f8ff; border-color: transparent; box-shadow: inset 0 0 0 2px #0079bc; } .ds-option:focus-visible { outline: 2px solid #0079bc; outline-offset: 2px; } .ds-dot { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 9999px; border: 1px solid rgb(5 24 39 / 0.2); background: #ffffff; flex-shrink: 0; } .ds-option[aria-checked=\"true\"] .ds-dot { border-color: #0079bc; } .ds-option[aria-checked=\"true\"] .ds-dot::after { content: \"\"; width: 10px; height: 10px; border-radius: 9999px; background: #0079bc; } .ds-option strong { display: block; font: 500 14px/20px inherit; color: #10181e; } .ds-option small { display: block; font: 400 12px/16px inherit; color: #616c76; }"
+    },
+    {
+      "name": "Store Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Floating white pill header with a centred inset nav group and an inverse active link.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main\"><span class=\"ds-brand\">BlueSigns</span><span class=\"ds-nav-group\"><a href=\"#\" aria-current=\"page\">Home</a><a href=\"#\">New in</a><a href=\"#\">Orders</a></span><span class=\"ds-nav-icon\" aria-label=\"Bag, 2 items\">2</span></nav>",
+      "css": ".ds-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; height: 64px; padding: 0 8px 0 20px; border-radius: 9999px; background: #ffffff; font-family: Geist, ui-sans-serif, system-ui, sans-serif; box-shadow: 0 0 0 1px rgb(5 24 39 / 0.08), 0 1px 2px rgb(5 24 39 / 0.04), 0 4px 14px -6px rgb(5 24 39 / 0.08); } .ds-brand { font: 500 18px/24px inherit; letter-spacing: -0.01em; color: #10181e; } .ds-nav-group { display: flex; gap: 4px; padding: 4px; border-radius: 9999px; background: #f1f4f6; } .ds-nav-group a { height: 32px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 9999px; color: #616c76; font: 500 13px/18px inherit; text-decoration: none; transition: color 160ms cubic-bezier(0.23,1,0.32,1); } .ds-nav-group a:hover { color: #10181e; } .ds-nav-group a[aria-current=\"page\"] { background: #10181e; color: #ffffff; } .ds-nav-group a:focus-visible { outline: 2px solid #0079bc; outline-offset: 2px; } .ds-nav-icon { justify-self: end; display: grid; place-items: center; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9999px; background: #0079bc; color: #ffffff; font: 500 12px/1 inherit; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Price Display",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Selling price in tabular figures, muted rupee, struck MRP, green percentage off and tax note.",
+      "html": "<p class=\"ds-price\"><span class=\"ds-price-now\"><span class=\"ds-rupee\">₹</span>15,999</span><span class=\"ds-mrp\">MRP <s>₹19,999</s></span><span class=\"ds-off\">20% off</span><span class=\"ds-tax\">Inclusive of all taxes</span></p>",
+      "css": ".ds-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin: 0; font-family: Geist, ui-sans-serif, system-ui, sans-serif; font-variant-numeric: tabular-nums; } .ds-price-now { font: 500 30px/36px inherit; letter-spacing: -0.025em; color: #10181e; } .ds-rupee { color: #616c76; font-size: 0.7em; } .ds-mrp { font: 400 14px/20px inherit; color: #616c76; } .ds-off { font: 500 14px/20px inherit; color: #166e3c; } .ds-tax { flex-basis: 100%; font: 400 12px/16px inherit; color: #616c76; }"
+    },
+    {
+      "name": "KPI Tile",
+      "kind": "custom",
+      "refersTo": "kpi-tile",
+      "description": "Dashboard headline number with a signed delta whose colour follows whether the direction is good.",
+      "html": "<article class=\"ds-kpi\"><p class=\"ds-kpi-label\">Revenue</p><p class=\"ds-kpi-value\">₹12,48,900</p><p class=\"ds-kpi-delta\"><span class=\"ds-up\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17 17 7\"/><path d=\"M8 7h9v9\"/></svg>8.4%</span><span class=\"ds-kpi-period\">vs previous 30 days</span></p></article>",
+      "css": ".ds-kpi { display: flex; flex-direction: column; gap: 8px; max-width: 260px; padding: 16px; border-radius: 28px; background: #ffffff; color: #10181e; font-family: Geist, ui-sans-serif, system-ui, sans-serif; box-shadow: 0 0 0 1px rgb(5 24 39 / 0.08), 0 1px 2px rgb(5 24 39 / 0.04), 0 4px 14px -6px rgb(5 24 39 / 0.08); } .ds-kpi-label { margin: 0; font: 500 13px/18px inherit; color: #616c76; } .ds-kpi-value { margin: 0; font: 500 30px/36px inherit; letter-spacing: -0.025em; font-variant-numeric: tabular-nums; } .ds-kpi-delta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 0; font: 400 12px/16px inherit; } .ds-up { display: inline-flex; align-items: center; gap: 6px; color: #166e3c; font-variant-numeric: tabular-nums; } .ds-kpi-period { color: #616c76; }"
+    },
+    {
+      "name": "Status Pill",
+      "kind": "chip",
+      "refersTo": "status-pill",
+      "description": "Admin record state: a tone dot plus the word, never the dot alone.",
+      "html": "<span class=\"ds-status ds-status-warning\"><span class=\"ds-status-dot\"></span>Packed</span>",
+      "css": ".ds-status { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 9999px; font: 500 12px/16px Geist, ui-sans-serif, system-ui, sans-serif; white-space: nowrap; } .ds-status-dot { width: 6px; height: 6px; border-radius: 9999px; background: currentColor; } .ds-status-warning { background: #fff6e5; color: #8f5b00; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Calm Counter",
+    "overview": "BlueSigns is a well-lit shop counter. The room is a soft cool grey. Everything the shopper handles sits on a crisp white tray with a fine drawn edge. One blue tag on each screen marks where to act. The system comes from soft-surface dashboard references, but its job is commerce: prices, sizes, delivery dates and fees have to be read at a glance on a phone. Calm is how that trust is earned. There is no visual noise competing with the MRP, the discount or the Pay button.\n\nDensity is phone-first and unhurried. Controls are generous pills on one height scale. Cards hold few things, and related items sit 12–16px apart inside them. Hierarchy comes from size and tone, not weight: headings, titles and labels all share weight 500, and display type is set regular with tight tracking. Motion is short and decelerating. It confirms that something happened (added to bag, sheet opened) and never performs for attention.\n\nThe same counter now serves the seller. The admin tier is the storefront's room seen from behind: the same grey canvas, white trays, pill controls and blue signal, run denser and wider. Dashboards, tables and charts are read, not browsed, so chrome goes flat and quiet and the data carries the colour. Every figure on an admin screen is demo data and says so.\n\nEvery surface is defined by a hairline first and a soft ink-tinted shadow second, so layers stay legible in the dark theme too. Light and dark are both first-class, and every text and fill pair is verified at WCAG 2.2 AA. The blue accent and the light/dark pair are binding brand commitments. The name \"BlueSigns\" and its logo (public/logo.jpg) are the brand source of truth: the logo is always used exactly as supplied, never recolored or redrawn, and its blue and yellow define the palette.",
+    "keyCharacteristics": [
+      "Cool grey canvas, white trays, hairline edges on every tier.",
+      "One blue signal per view; selection is always a soft blue fill with a 2px blue ring.",
+      "Pill controls on a shared 28/32/40/48/56px scale; rows on 36/44/48px.",
+      "Generous corners that step down as surfaces nest (28 → 20 → 14px).",
+      "Weight 500 is the only emphasis step; prices use tabular figures.",
+      "Short, decelerating motion that becomes fades under reduced motion.",
+      "Charts draw from a six-slot categorical palette bound to the entity, never to rank.",
+      "Every chart ships a table twin, and every admin figure is labelled demo data."
+    ],
+    "rules": [
+      {
+        "name": "The Entity Slot Rule",
+        "body": "A series keeps its slot for its whole life: colour identifies the entity, never its rank. Filtering a chart never repaints the survivors, and a seventh series folds into Other rather than cycling back to slot 1.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Signal Rule",
+        "body": "Only one blue-filled action per view. Secondary actions are white-with-hairline, neutral or ghost. If two things are blue, neither is the signal.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink-Only Hairline Rule",
+        "body": "Every light-theme line and shadow is mixed from the same ink (rgb 5 24 39). Never introduce a new grey or pure black for borders or shadows.",
+        "section": "colors"
+      },
+      {
+        "name": "The Muted-Not-Faded Rule",
+        "body": "Secondary text uses Slate Muted. Never lower opacity or use Pewter Subtle for anything a shopper needs to read.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Weight Rule",
+        "body": "Weight 500 is the only emphasis step. No semibold or bold in running UI. If something needs more emphasis, it needs a larger role.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Eyebrow Rule",
+        "body": "Never put an overline, kicker or tag above a heading. The heading and its muted phrase carry the section.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Price Rule",
+        "body": "Every price, count, countdown and total uses tabular figures, so numbers don't jitter as they change.",
+        "section": "typography"
+      },
+      {
+        "name": "The Shared Rail Rule",
+        "body": "Controls that sit side by side use the same height token. A 40px button never sits beside a 44px field.",
+        "section": "layout"
+      },
+      {
+        "name": "The Only Content Floats Rule",
+        "body": "Chrome and toolbars are flat, content cards float at card depth, and nothing but overlays reaches popover depth.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No Bare Border Rule",
+        "body": "A surface is never edged with a plain CSS border. It gets its edge from its elevation tier. Plain borders are reserved for controls (inputs, secondary buttons, chips).",
+        "section": "elevation"
+      },
+      {
+        "name": "The Step-Down Rule",
+        "body": "A nested surface never repeats its parent's radius. Step down at least one level.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Table Twin Rule",
+        "body": "Every chart ships a table view and, from two series up, a legend or direct labels. If the only way to read a value is to hover, the chart is not finished.",
+        "section": "components"
+      },
+      {
+        "name": "The One Axis Rule",
+        "body": "One value axis per chart. Two different units in one plot become two charts or a table.",
+        "section": "components"
+      },
+      {
+        "name": "The Demo Data Rule",
+        "body": "Every admin figure is demo data and says so on the surface that shows it — a badge in the shell, a note in the card, a line in the export. Demo data is generated from a fixed seed and a fixed today, so it never drifts between server and client.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do keep one Signs Blue action per view and make every other action secondary, neutral or ghost.",
+      "Do mark selected cards, rows and chips with Blue Mist plus a 2px blue ring; use the solid inverse fill only for size pills and segmented controls.",
+      "Do edge surfaces with their elevation tier's hairline, content cards at card depth and toolbars flat.",
+      "Do step radii down when nesting (28px card → 20px inset → 14px item).",
+      "Do use Slate Muted for secondary text and tabular figures for every price and count.",
+      "Do keep controls that sit side by side on the same height token (32/40/48px) and rows on 36/44/48px.",
+      "Do give icon-only controls a label, and keep touch targets at 44px on coarse pointers.",
+      "Do check every new text/fill pair in both themes for WCAG 2.2 AA (4.5:1 text, 3:1 non-text and focus).",
+      "Do label illustrative ratings, reviews, offers and figures as demo content, and keep demo data deterministic (fixed seed, fixed today).",
+      "Do assign chart colour by entity slot in the fixed order (blue, aqua, orange, purple, magenta, yellow) and fold anything past six into Other.",
+      "Do give every chart a table view, and a legend or direct labels as soon as there are two series.",
+      "Do separate inline meta with the meta-list utility so wrapped rows never leave a dangling separator."
+    ],
+    "donts": [
+      "Don't stack several blue buttons or tint secondary actions blue.",
+      "Don't use semibold or bold overrides; weight 500 is the only emphasis step.",
+      "Don't put eyebrow labels, overlines or kickers above headings.",
+      "Don't edge a card or panel with a bare CSS border, or float chrome at popover depth.",
+      "Don't fade text with opacity or Pewter Subtle, or put white text on solid amber.",
+      "Don't add decorative gradients, loops or glows to draw attention to merchandising; motion only confirms actions.",
+      "Don't repeat a parent's radius on a nested panel.",
+      "Don't use a disabled look built from opacity; use the neutral disabled fill.",
+      "Don't colour a series by rank, cycle past slot 6, or repaint survivors when a chart is filtered.",
+      "Don't put a second value axis, a chart frame, tick marks or a 3D or gradient fill in a plot.",
+      "Don't hide a value behind hover only, or let a dot or a colour carry a status without its word.",
+      "Don't show an admin figure without its demo-data label."
+    ]
+  }
+}

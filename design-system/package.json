@@ -1,0 +1,9 @@
+{
+  "name": "@bluesigns/ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "BlueSigns design system: the app's components packaged for Claude Design.",
+  "module": "./index.ts",
+  "types": "./index.ts",
+  "sideEffects": ["*.css"]
+}

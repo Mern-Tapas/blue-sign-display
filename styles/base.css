@@ -1,0 +1,92 @@
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* Browser surfaces carry the palette too */
+    scrollbar-color: color-mix(in srgb, var(--fg) 22%, transparent) transparent;
+    accent-color: var(--accent);
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    caret-color: var(--accent);
+  }
+
+  ::selection {
+    background-color: var(--accent-soft-hover);
+    color: var(--fg);
+  }
+
+  /* One focus language: solid 2px ring with a 2px gap. Components that need an
+     inset ring (text fields) use the `focus-ring-inset` utility instead. */
+  :focus-visible,
+  [data-force-state="focus"] {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  ::placeholder {
+    color: var(--fg-placeholder);
+    opacity: 1;
+  }
+
+  /* Icons: lucide ships stroke-width 2, heavier than Geist text at 14–16px */
+  svg.lucide {
+    stroke-width: 1.75;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* Reduced motion = gentler, not zero. Motion tokens turn slides/pops into fades
+     (keyframes read them), loops stop, transitions keep only colour/opacity/shadow,
+     and press / lift drop their transforms (see utilities.css). */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --motion-travel: 0;
+      --motion-scale-from: 1;
+      --motion-fade-from: 0;
+    }
+
+    html {
+      scroll-behavior: auto !important;
+    }
+
+    .animate-ping,
+    .animate-pulse,
+    .animate-shimmer,
+    .animate-caret-blink {
+      animation: none !important;
+    }
+
+    /* Spinners still communicate progress, just calmer */
+    .animate-spin {
+      animation-duration: 1.6s !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      transition-property: color, background-color, border-color, outline-color, opacity, box-shadow !important;
+    }
+  }
+}

@@ -1,0 +1,384 @@
+/* =====================================================================
+   Design tokens — "BlueSigns" (palette taken from public/logo.jpg)
+   Layer 1: primitives (raw palette, never used directly in components)
+   Layer 2: semantic tokens (light + dark), consumed via Tailwind utilities
+   ===================================================================== */
+
+:root {
+  /* ---- Neutral (cool grey, tinted toward the logo blue — OKLCH hue 243) ---- */
+  --neutral-0: #ffffff;
+  --neutral-25: #f7f8fa;
+  --neutral-50: #f1f4f6;
+  --neutral-100: #edeef0;
+  --neutral-150: #e3e7eb;
+  --neutral-200: #d8dee3;
+  --neutral-300: #bec6ce;
+  --neutral-400: #919da7;
+  --neutral-500: #616c76; /* nudged 1 step darker than a pure retint so fg-muted keeps ≥4.5:1 on canvas */
+  --neutral-600: #4a555e;
+  --neutral-700: #303b45;
+  --neutral-800: #1e2a33;
+  --neutral-850: #13202a;
+  --neutral-900: #10181e;
+  --neutral-950: #0a0f14;
+
+  /* ---- Night (dark-theme surface ladder, cool blue-grey) ----
+     Each step is a visible layer: canvas → surface ≥1.15, surface → raised ≥1.15. */
+  --night-1000: #060a0e;
+  --night-950: #141c22;
+  --night-900: #1a252d;
+  --night-850: #1f2c36;
+  --night-800: #25333f;
+  --night-750: #2c3d4b;
+
+  /* Ink: the single hue every light hairline and shadow is mixed from */
+  --ink: 5 24 39;
+
+  /* ---- Azure (brand primary — logo background #037ec2 = azure-500) ----
+     azure-600 is the logo blue nudged just enough for white text to pass AA (4.71:1). */
+  --azure-50: #f0f8ff;
+  --azure-100: #e0f1ff;
+  --azure-200: #c1e3ff;
+  --azure-300: #8cccff;
+  --azure-400: #53adef;
+  --azure-500: #037ec2;
+  --azure-600: #0079bc;
+  --azure-700: #0f6195;
+  --azure-800: #074d78;
+  --azure-900: #093a5a;
+  --azure-950: #022137;
+
+  /* ---- Sun (brand secondary — logo mark + wordmark #ffca08 = sun-400) ----
+     Never text or outlines on light surfaces (1.53:1 on white); pair with dark ink (11.7:1). */
+  --sun-50: #fffaec;
+  --sun-100: #fff1cd;
+  --sun-200: #ffe6a5;
+  --sun-300: #ffd665;
+  --sun-400: #ffca08;
+  --sun-500: #e7b700;
+  --sun-600: #c29900;
+  --sun-700: #967600;
+  --sun-800: #705700;
+
+  /* ---- Status ---- */
+  --green-50: #ebf8f0;
+  --green-500: #22a55b;
+  --green-600: #1b8a4b;
+  --green-650: #187f45; /* solid success fill: white text 5.05:1 */
+  --green-700: #166e3c;
+  --green-300: #6fd39a;
+
+  --red-50: #fdeeee;
+  --red-500: #e5484d;
+  --red-600: #cd2b31;
+  --red-700: #a8232a;
+  --red-300: #f59ea1;
+
+  --amber-50: #fff6e5;
+  --amber-500: #f5a524;
+  --amber-600: #c98100;
+  --amber-700: #8f5b00;
+  --amber-300: #fbcf7c;
+
+  --blue-50: #ebf3ff;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-300: #93bbfb;
+
+  /* ---- Layout ---- */
+  --container-max: 1320px; /* storefront */
+  --container-wide: 1440px; /* docs: sidebar + content + table of contents */
+  --gutter: 1.5rem;
+  --card-pad: 1.25rem; /* 20 → 24 from sm, see media query below */
+  --nav-h: 4rem;
+  --section-gap: clamp(3.5rem, 6vw, 5rem);
+  /* Minimum touch target on coarse pointers (WCAG 2.5.5 / platform HIG) */
+  --hit-min: 44px;
+
+  /* ---- Motion ----
+     Enter: ease-out, fast. Exit: faster than enter. Never ease-in for UI.
+     Reduced motion flips the travel/scale tokens so keyframes degrade to fades. */
+  --dur-instant: 100ms;
+  --dur-fast: 160ms;
+  --dur-base: 220ms;
+  --dur-slow: 320ms;
+  --motion-travel: 1; /* multiplier for slide distances */
+  --motion-scale-from: 0.96; /* starting scale for pop-in */
+  --motion-fade-from: 1; /* opacity at start of slides (0 under reduced motion) */
+
+  /* ---- Z-index ---- */
+  --z-sticky: 20;
+  --z-dropdown: 40;
+  --z-overlay: 50;
+  --z-modal: 60;
+  --z-popover: 70;
+  --z-toast: 80;
+  --z-tooltip: 90;
+}
+
+/* ---------------------------------------------------------------------
+   Semantic tokens — LIGHT (default)
+   --------------------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --canvas: var(--neutral-100);
+  --surface: var(--neutral-0);
+  --surface-sunken: var(--neutral-50);
+  --surface-raised: var(--neutral-0);
+  --surface-hover: var(--neutral-100); /* distinct from sunken */
+  --surface-contrast: var(--neutral-850);
+  --surface-inverse: var(--neutral-900); /* inverted chips, tooltips, neutral buttons */
+  --skeleton: var(--neutral-150);
+  --skeleton-shine: var(--neutral-50);
+
+  --fg: var(--neutral-900);
+  --fg-muted: var(--neutral-500);
+  --fg-subtle: var(--neutral-400); /* decorative / disabled only — never meaningful text */
+  --fg-placeholder: var(--neutral-500); /* ≥4.5:1 on surface + sunken */
+  --fg-on-accent: #ffffff;
+  --fg-on-accent-muted: #ffffff; /* azure-600 leaves no headroom (4.71:1), so no muting */
+  --fg-on-contrast: #ffffff;
+  --fg-on-contrast-muted: #99a7b2;
+  --fg-inverse: var(--neutral-0);
+  --fg-on-danger: #ffffff;
+  --fg-on-success: #ffffff;
+  --fg-on-warning: var(--neutral-900);
+  --fg-on-info: #ffffff;
+
+  /* Hairlines — one ink, four roles (D-035).
+     border-subtle: dividers inside a surface · border: control outlines
+     border-strong: hovered / informative outlines · edge(-strong): surface edges inside elevation */
+  --border-subtle: rgb(var(--ink) / 0.07);
+  --border: rgb(var(--ink) / 0.11);
+  --border-strong: rgb(var(--ink) / 0.2);
+  --edge: rgb(var(--ink) / 0.08);
+  --edge-strong: rgb(var(--ink) / 0.12);
+
+  --accent: var(--azure-600);
+  --accent-fg: var(--azure-700); /* accent-colored TEXT on surfaces: azure-600 is only 4.05:1 on canvas */
+  --accent-hover: var(--azure-700);
+  --accent-pressed: var(--azure-800);
+  --accent-soft: var(--azure-50);
+  --accent-soft-hover: var(--azure-100);
+  --accent-soft-fg: var(--azure-700);
+
+  /* Secondary brand (logo yellow). Available for brand moments; not used by core components. */
+  --secondary: var(--sun-400);
+  --secondary-hover: var(--sun-500);
+  --secondary-soft: var(--sun-50);
+  --secondary-fg: var(--sun-800); /* ≥4.5:1 on surface and secondary-soft */
+  --fg-on-secondary: var(--neutral-900);
+
+  /* Selection (D-036): soft fill + 2px ring for cards, rows, options */
+  --selected-bg: var(--accent-soft);
+  --selected-ring: var(--accent);
+
+  /* ---- Interaction ---- */
+  --focus-ring: var(--azure-600); /* solid, ≥3:1 on every surface */
+  --highlight: color-mix(in srgb, var(--fg) 5%, transparent); /* menu / option / row highlight on any surface */
+  --state-hover-opacity: 0.06; /* currentColor layer, see @utility state-layer */
+  --state-pressed-opacity: 0.12;
+  --disabled-bg: var(--neutral-150);
+  --disabled-fg: #76818b; /* ~3:1 on disabled-bg: recognisable, clearly not active */
+  --disabled-border: var(--border-subtle);
+
+  /* ---- On colored surfaces (accent / contrast panels) ---- */
+  --tile-on-color: rgb(255 255 255 / 0.12); /* nested translucent tile on accent / contrast panels */
+  --tile-on-color-hover: rgb(255 255 255 / 0.2);
+  --edge-on-color: rgb(255 255 255 / 0.14);
+  --scrim: rgb(5 12 18 / 0.62); /* legibility gradient over photography */
+
+  --success: var(--green-650);
+  --success-soft: var(--green-50);
+  --success-fg: var(--green-700);
+  --warning: var(--amber-500);
+  --warning-soft: var(--amber-50);
+  --warning-fg: var(--amber-700);
+  --danger: var(--red-600);
+  --danger-soft: var(--red-50);
+  --danger-fg: var(--red-700);
+  --info: var(--blue-600);
+  --info-soft: var(--blue-50);
+  --info-fg: var(--blue-700);
+  --rating: var(--amber-600); /* star fill: ≥3:1 on surface */
+
+  /* ---- Data visualisation (validated with the dataviz six-checks, D-064) ----
+     Categorical: fixed order, never cycled; slots 1–3 also pass all-pairs.
+     Slots 2, 5, 6 sit below 3:1 on white → ship direct labels or the table view. */
+  --chart-1: var(--azure-500);
+  --chart-2: #1baf7a;
+  --chart-3: #eb6834;
+  --chart-4: #aa7fe4;
+  --chart-5: #e87ba4;
+  --chart-6: var(--sun-500);
+  --chart-other: var(--neutral-400); /* de-emphasis / "Other" */
+  /* Ordinal (funnel stages, tiers): one hue, light → dark, light end ≥2:1 */
+  --chart-ord-1: var(--azure-300);
+  --chart-ord-2: var(--azure-400);
+  --chart-ord-3: var(--azure-500);
+  --chart-ord-4: var(--azure-700);
+  --chart-ord-5: var(--azure-900);
+  /* Sequential (heatmaps): near-zero recedes to the surface */
+  --chart-seq-1: var(--azure-50);
+  --chart-seq-2: var(--azure-200);
+  --chart-seq-3: var(--azure-300);
+  --chart-seq-4: var(--azure-400);
+  --chart-seq-5: var(--azure-500);
+  --chart-seq-6: var(--azure-700);
+  --chart-seq-7: var(--azure-900);
+  /* Diverging: azure ↔ orange with a neutral midpoint */
+  --chart-div-neg: #eb6834;
+  --chart-div-mid: var(--neutral-150);
+  --chart-div-pos: var(--azure-500);
+  /* Chrome: solid hairlines, recessive */
+  --chart-grid: var(--neutral-150);
+  --chart-axis: var(--neutral-300);
+
+  --overlay: rgb(10 15 20 / 0.4);
+
+  /* ---- Elevation tiers (hairline-first, D-011 / D-035) ----
+     flat       → edge only: toolbars, chrome, grouped lists, docs frames
+     xs         → edge + contact shadow: small raised controls (active segment)
+     card       → edge + soft depth: resting content cards
+     card-hover → card lifted on hover (interactive cards only)
+     popover    → edge-strong + float: menus, selects, popovers
+     modal      → edge-strong + deep float: dialogs, sheets
+     All shadows mix from --ink, never pure black. */
+  --elev-flat: 0 0 0 1px var(--edge);
+  --elev-xs: 0 0 0 1px var(--edge), 0 1px 2px rgb(var(--ink) / 0.06);
+  --elev-card: 0 0 0 1px var(--edge), 0 1px 2px rgb(var(--ink) / 0.04), 0 4px 14px -6px rgb(var(--ink) / 0.08);
+  --elev-card-hover: 0 0 0 1px var(--edge-strong), 0 2px 4px rgb(var(--ink) / 0.05), 0 14px 28px -12px rgb(var(--ink) / 0.16);
+  --elev-drag: 0 0 0 1px var(--edge-strong), 0 4px 8px rgb(var(--ink) / 0.06), 0 18px 32px -14px rgb(var(--ink) / 0.22);
+  --elev-popover: 0 0 0 1px var(--edge-strong), 0 2px 6px rgb(var(--ink) / 0.06), 0 16px 36px -12px rgb(var(--ink) / 0.2);
+  --elev-modal: 0 0 0 1px var(--edge-strong), 0 8px 20px -8px rgb(var(--ink) / 0.12), 0 32px 72px -20px rgb(var(--ink) / 0.3);
+}
+
+/* ---------------------------------------------------------------------
+   Semantic tokens — DARK
+   --------------------------------------------------------------------- */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces step up in lightness so layers separate without relying on shadow.
+     In dark, inset (sunken) panels are one step LIGHTER than their parent — depth reads as
+     "closer to the light", the same convention as raised surfaces. */
+  --canvas: var(--night-1000);
+  --surface: var(--night-950);
+  --surface-sunken: var(--night-900);
+  --surface-raised: var(--night-850);
+  --surface-hover: var(--night-800);
+  --surface-contrast: var(--night-750);
+  --surface-inverse: #f0f3f5;
+  --skeleton: var(--night-850);
+  --skeleton-shine: var(--night-750);
+
+  --fg: #f0f3f5;
+  --fg-muted: #99a4ae;
+  --fg-subtle: #65717b;
+  --fg-placeholder: #838f99;
+  --fg-on-accent: #ffffff;
+  --fg-on-accent-muted: #ffffff; /* azure-600: white is only 4.71:1, so no muting in dark */
+  --fg-on-contrast: #ffffff;
+  --fg-on-contrast-muted: #a5b2bc;
+  --fg-inverse: var(--neutral-900);
+  --fg-on-danger: #ffffff;
+  --fg-on-success: var(--neutral-950);
+  --fg-on-warning: var(--neutral-950);
+  --fg-on-info: var(--neutral-950);
+
+  --border-subtle: rgb(255 255 255 / 0.07);
+  --border: rgb(255 255 255 / 0.11);
+  --border-strong: rgb(255 255 255 / 0.2);
+  --edge: rgb(255 255 255 / 0.08);
+  --edge-strong: rgb(255 255 255 / 0.12);
+
+  --accent: var(--azure-600);
+  --accent-fg: var(--azure-300); /* azure-600 text is only 3.4:1 on dark surface */
+  --accent-hover: var(--azure-700); /* darker than accent: white stays ≥4.5:1 (D-037) */
+  --accent-pressed: var(--azure-800);
+  --accent-soft: rgb(3 126 194 / 0.18);
+  --accent-soft-hover: rgb(3 126 194 / 0.26);
+  --accent-soft-fg: var(--azure-300);
+
+  --secondary: var(--sun-400);
+  --secondary-hover: var(--sun-300);
+  --secondary-soft: rgb(255 202 8 / 0.16);
+  --secondary-fg: var(--sun-300);
+  --fg-on-secondary: var(--neutral-950);
+
+  --selected-bg: var(--accent-soft);
+  --selected-ring: var(--azure-400);
+
+  --focus-ring: var(--azure-400);
+  --highlight: color-mix(in srgb, var(--fg) 8%, transparent);
+  --state-hover-opacity: 0.08;
+  --state-pressed-opacity: 0.14;
+  --disabled-bg: rgb(255 255 255 / 0.06);
+  --disabled-fg: #737f89;
+  --disabled-border: var(--border-subtle);
+
+  --tile-on-color: rgb(255 255 255 / 0.1);
+  --tile-on-color-hover: rgb(255 255 255 / 0.16);
+  --edge-on-color: rgb(255 255 255 / 0.12);
+  --scrim: rgb(1 5 10 / 0.7);
+
+  --success: var(--green-500);
+  --success-soft: rgb(34 165 91 / 0.16);
+  --success-fg: var(--green-300);
+  --warning: var(--amber-500);
+  --warning-soft: rgb(245 165 36 / 0.16);
+  --warning-fg: var(--amber-300);
+  --danger: var(--red-600); /* red-500 left white text at 3.91:1 */
+  --danger-soft: rgb(229 72 77 / 0.16);
+  --danger-fg: var(--red-300);
+  --info: var(--blue-500);
+  --info-soft: rgb(59 130 246 / 0.16);
+  --info-fg: var(--blue-300);
+  --rating: var(--amber-500);
+
+  --chart-1: var(--azure-400);
+  --chart-2: #199e70;
+  --chart-3: #d95926;
+  --chart-4: #a272d4;
+  --chart-5: #d55181;
+  --chart-6: #d4a813;
+  --chart-other: #65717b;
+  --chart-ord-1: var(--azure-700);
+  --chart-ord-2: var(--azure-500);
+  --chart-ord-3: var(--azure-400);
+  --chart-ord-4: var(--azure-300);
+  --chart-ord-5: var(--azure-200);
+  --chart-seq-1: var(--azure-950);
+  --chart-seq-2: var(--azure-900);
+  --chart-seq-3: var(--azure-800);
+  --chart-seq-4: var(--azure-600);
+  --chart-seq-5: var(--azure-400);
+  --chart-seq-6: var(--azure-300);
+  --chart-seq-7: var(--azure-200);
+  --chart-div-neg: #d95926;
+  --chart-div-mid: var(--night-800);
+  --chart-div-pos: var(--azure-400);
+  --chart-grid: var(--night-850);
+  --chart-axis: var(--night-750);
+
+  --overlay: rgb(3 6 10 / 0.64);
+
+  /* Dark: hairline + 1px top highlight carry the edge on every tier; shadows only add depth */
+  --elev-flat: 0 0 0 1px var(--edge), inset 0 1px 0 rgb(255 255 255 / 0.03);
+  --elev-xs: 0 0 0 1px var(--edge), inset 0 1px 0 rgb(255 255 255 / 0.04), 0 1px 2px rgb(0 0 0 / 0.35);
+  --elev-card: 0 0 0 1px var(--edge), inset 0 1px 0 rgb(255 255 255 / 0.04), 0 2px 8px rgb(0 0 0 / 0.3);
+  --elev-card-hover: 0 0 0 1px var(--edge-strong), inset 0 1px 0 rgb(255 255 255 / 0.05), 0 16px 32px -12px rgb(0 0 0 / 0.6);
+  --elev-drag: 0 0 0 1px var(--edge-strong), inset 0 1px 0 rgb(255 255 255 / 0.06), 0 18px 36px -14px rgb(0 0 0 / 0.62);
+  --elev-popover: 0 0 0 1px var(--edge-strong), inset 0 1px 0 rgb(255 255 255 / 0.06), 0 18px 40px -10px rgb(0 0 0 / 0.65);
+  --elev-modal: 0 0 0 1px var(--edge-strong), inset 0 1px 0 rgb(255 255 255 / 0.06), 0 32px 80px -16px rgb(0 0 0 / 0.75);
+}
+
+/* Layout tokens that step with the viewport */
+@media (min-width: 40rem) {
+  :root {
+    --card-pad: 1.5rem;
+  }
+}
