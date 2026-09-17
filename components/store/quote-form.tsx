@@ -26,7 +26,7 @@ function validate(v: Values): Errors {
   if (!v.name.trim()) e.name = "Enter your name.";
   if (!/^\S+@\S+\.\S+$/.test(v.email.trim())) e.email = "Enter a valid email address.";
   if (v.phone.replace(/\D/g, "").length < 10) e.phone = "Enter a 10-digit phone number.";
-  if (!v.model) e.model = "Choose the display you're interested in.";
+  if (!v.model) e.model = "Choose the product you're interested in.";
   const qty = Number(v.quantity);
   if (!Number.isInteger(qty) || qty < 1) e.quantity = "Enter a quantity of 1 or more.";
   return e;
@@ -38,7 +38,12 @@ function validate(v: Values): Errors {
  * until then the confirmation only reflects what was entered on this page.
  */
 export function QuoteForm({ defaultModel }: { defaultModel?: string }) {
-  const knownModel = modelGroups.some((g) => g.options.some((o) => o.value === defaultModel)) ? defaultModel! : "";
+  const requested = defaultModel?.trim().slice(0, 160) ?? "";
+  const isCanModel = modelGroups.some((g) => g.options.some((o) => o.value === requested));
+  // A product linked from the catalogue gets its own option so the enquiry keeps its name.
+  const groups: SelectGroup[] =
+    requested && !isCanModel ? [{ label: "From the catalogue", options: [{ value: requested, label: requested }] }, ...modelGroups] : modelGroups;
+  const knownModel = requested;
   const [values, setValues] = useState<Values>({
     name: "",
     company: "",
@@ -105,8 +110,8 @@ export function QuoteForm({ defaultModel }: { defaultModel?: string }) {
           <Field label="Phone" error={errors.phone} required>
             <Input type="tel" inputMode="tel" autoComplete="tel" value={values.phone} onChange={(e) => set("phone")(e.target.value)} />
           </Field>
-          <Field label="Display" error={errors.model} required>
-            <Select groups={modelGroups} placeholder="Choose a model" value={values.model || undefined} onValueChange={set("model")} />
+          <Field label="Product" error={errors.model} required>
+            <Select groups={groups} placeholder="Choose a model" value={values.model || undefined} onValueChange={set("model")} />
           </Field>
           <div className="grid grid-cols-[1fr_7rem] gap-4">
             <Field label="City" hint="Where it will be installed">

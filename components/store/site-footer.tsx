@@ -15,6 +15,7 @@ const columns = [
   {
     title: "Company",
     links: [
+      { label: "Full product catalogue", href: "/catalogue" },
       { label: "IQ World software", href: "/iq-world" },
       { label: "Why digital signage", href: "/#why-digital" },
       { label: "Request a quote", href: "/contact" },

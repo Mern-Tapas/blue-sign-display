@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { IconTile } from "@/components/ui/icon-tile";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/cn";
+import { activeCategories, catalogueProducts } from "@/lib/data/catalogue";
 import { iqWorldCapabilities, placements, series, signageComparison, WARRANTY, type Placement } from "@/lib/data/can-products";
 
 const placementIcon: Record<Placement, React.ReactNode> = {
@@ -110,6 +111,41 @@ export default function HomePage() {
             <SeriesCard key={s.slug} series={s} preload={i < 3} />
           ))}
         </div>
+      </section>
+
+      <section aria-label="Product catalogue">
+        <SectionHeader
+          title="Beyond signage,"
+          muted="the full catalogue"
+          description={`${catalogueProducts.length} products: kiosks, touch displays, POS, mini PCs, refurbished computing and software.`}
+          href="/catalogue"
+          linkLabel="Browse catalogue"
+        />
+        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {activeCategories.slice(0, 12).map((c) => (
+            <li key={c.slug}>
+              <Card asChild padding="none" interactive className="group h-full overflow-hidden">
+                <Link href={`/catalogue?category=${c.slug}`}>
+                  <span className="relative m-2 mb-0 block aspect-square overflow-hidden rounded-xl bg-white">
+                    {c.image && (
+                      <Image
+                        src={c.image}
+                        alt=""
+                        fill
+                        sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
+                        className="object-contain p-2 transition-transform duration-(--dur-slow) group-hover:scale-[1.04]"
+                      />
+                    )}
+                  </span>
+                  <span className="flex flex-col p-3">
+                    <span className="text-body-strong">{c.name}</span>
+                    <span className="text-caption text-fg-muted">{c.productCount} products</span>
+                  </span>
+                </Link>
+              </Card>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section id="why-digital" aria-labelledby="why-title" className="scroll-mt-28">

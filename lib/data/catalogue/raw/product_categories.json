@@ -1,0 +1,162 @@
+[
+  {
+    "id": "4f4a0e3a-5520-4c23-a09b-41beec204c02",
+    "slug": "all-in-one-pos-pc",
+    "name": "All in one TOUCH POS",
+    "sort_order": 0,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/pos.jpg?v=1788422739",
+    "description": "The P oint Of Sale ( POS ) is the time and place where a retail transaction is completed. At the point of sale, the merchant would calculate the amount owed by the customer and indicate the amount, and may prepare an invoice for the customer (which may be a cash register printout), and indicate the options for the customer to make payment. It is also the point at which a customer makes a payment t"
+  },
+  {
+    "id": "d80543bc-0cef-4ac6-97b9-0cd7d50ca1e5",
+    "slug": "android-player",
+    "name": "Android Media Player",
+    "sort_order": 1,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/android-player-tv-box-2.jpg?v=1788422249",
+    "description": ""
+  },
+  {
+    "id": "40c48075-12df-4c00-addb-d2e51220d562",
+    "slug": "digital-signage-solution",
+    "name": "Digital Signage Solution",
+    "sort_order": 2,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/digital_signage.jpg?v=1788421938",
+    "description": "You Can broadcast your content in minutes to any number of screens and locations. Digital Signage is a highly powerful and flexible communication method: a dynamic sign (screen) that displays digital media to a public audience. Digital signage software works over an Internet connection, delivering rich media content to digital screens. Use digital signage to grow your revenue, reduce your cost and"
+  },
+  {
+    "id": "6804db1f-b823-4c25-83c0-dd3b6d26559b",
+    "slug": "firewall-or-utm-and-hotspot",
+    "name": "Firewall or UTM and Hotspot",
+    "sort_order": 3,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/Firewall-or-utm-and-Hotspot.jpg?v=1788855055",
+    "description": ""
+  },
+  {
+    "id": "37228d81-759d-4d8a-acf6-35f98f9cbb7e",
+    "slug": "kiosk-standee",
+    "name": "Kiosk Standee",
+    "sort_order": 4,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/kiosk-new.jpg?v=1788424323",
+    "description": "ThinPC allows you to take advantage of Digital Signage to increase the power and reach of your brand. Move your business to the next level."
+  },
+  {
+    "id": "7906be65-a6b2-48f3-8b2a-b333e6dfa42f",
+    "slug": "minipc",
+    "name": "MiniPC / Small Form Factor Computer CPU",
+    "sort_order": 5,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/8c_mini.jpg?v=1788855726",
+    "description": "MiniPC / Small Form Factor Computer CPU A MiniPC/S mall form factor ( SFF ) is a computer form factor designed to minimize the volume of a desktop computer . SFFs are available in a variety of sizes and shapes, including shoeboxes, cubes, and book-sized PCs. Their smaller and often lighter construction has made them popular as home theater PCs and as gaming computers for attending LAN parties . Ma"
+  },
+  {
+    "id": "ea3795b0-7575-4771-a0dc-95857a224ea9",
+    "slug": "mini-itx-motherboards",
+    "name": "Motherboards",
+    "sort_order": 6,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/BAT-I2_430_300_1.v20_56fa1a.jpg?v=1788856302",
+    "description": ""
+  },
+  {
+    "id": "d679ef49-c222-4c27-861c-f750a87c9b68",
+    "slug": "pos-accessories",
+    "name": "Pos Accessories",
+    "sort_order": 7,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/Pos-Accessories.jpg?v=1788423095",
+    "description": ""
+  },
+  {
+    "id": "1395b687-7fd3-4978-a7de-e455adffa6ed",
+    "slug": "computer-desktop",
+    "name": "Refurbished Desktop",
+    "sort_order": 8,
+    "created_at": "2026-09-09T12:49:19.741049+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/mini-tower.jpg?v=1788953895",
+    "description": ""
+  },
+  {
+    "id": "c86cae27-fc83-4b64-a782-a7e6ef26679a",
+    "slug": "laptops-1",
+    "name": "Refurbished Laptops",
+    "sort_order": 9,
+    "created_at": "2026-09-09T12:49:19.741049+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/asus.jpg?v=1788953860",
+    "description": ""
+  },
+  {
+    "id": "dfad45e2-1292-481a-9e94-2da43ee1d771",
+    "slug": "used-minipc",
+    "name": "Refurbished MiniPC",
+    "sort_order": 10,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/1_7442b572-bc16-4a15-a5e0-565e184b450f.jpg?v=1788954263",
+    "description": ""
+  },
+  {
+    "id": "51a0c660-1731-40b2-a855-d33a4d9cea1e",
+    "slug": "refurbished",
+    "name": "Refurbished Thin Clients",
+    "sort_order": 11,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/Thin-Client.jpg?v=1788954549",
+    "description": ""
+  },
+  {
+    "id": "be65756e-fd63-4c16-8a89-a11cfbc80fd5",
+    "slug": "used-workstation",
+    "name": "Refurbished Workstation & Server",
+    "sort_order": 12,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/Workstation.jpg?v=1788953971",
+    "description": ""
+  },
+  {
+    "id": "27522dd4-53d6-4ac9-9078-10cd071625f7",
+    "slug": "rfid-solution",
+    "name": "RFID Solution",
+    "sort_order": 13,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/rfid.jpg?v=1788954846",
+    "description": ""
+  },
+  {
+    "id": "c4d8697e-6f87-4548-80f7-da916e209274",
+    "slug": "software-solutions",
+    "name": "Software Solutions",
+    "sort_order": 14,
+    "created_at": "2026-08-22T09:17:21.400073+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/software_soluction.jpg?v=1788354523",
+    "description": ""
+  },
+  {
+    "id": "62466f14-2710-4253-af9a-21d7aa600851",
+    "slug": "touch-screen-monitor",
+    "name": "Touch Screen Monitor",
+    "sort_order": 15,
+    "created_at": "2026-09-02T11:58:10.253507+00:00",
+    "parent_id": null,
+    "image_url": "https://cdn.shopify.com/s/files/1/1229/2370/collections/monitor.jpg?v=1788956414",
+    "description": "Touch Screen Monitor A T ouchscreen is an important source of input device and output device normally layered on the top of an electronic visual display of an information processing system. A user can give input or control the information processing system through simple or multi-touch gestures by touching the screen with a special stylus and/or one or more fingers. Some touchscreens use ordinary "
+  }
+]

@@ -2,7 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      // Catalogue images imported from dcat.shop live in this Shopify store's CDN folder.
+      // Query strings vary per file (?v=…&width=…), so `search` is left open but the path is pinned.
+      { protocol: "https", hostname: "cdn.shopify.com", pathname: "/s/files/1/1229/2370/**" },
+    ],
   },
   // Docs IA (decision D-040): foundations split into dedicated pages; catch-all commerce
   // and filters pages merged into the journey pages.

@@ -28,6 +28,7 @@ import { cn } from "@/lib/cn";
 import { placements, series, sizeRange, SITE_URL, WARRANTY, type Placement } from "@/lib/data/can-products";
 
 const links = [
+  { href: "/catalogue", label: "Catalogue" },
   { href: "/iq-world", label: "IQ World" },
   { href: "/#why-digital", label: "Why digital" },
   { href: "/contact", label: "Contact" },
