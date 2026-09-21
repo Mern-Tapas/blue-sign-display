@@ -6,7 +6,7 @@ import { CatalogueToolbar } from "@/components/store/catalogue-toolbar";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
-import { activeCategories, catalogueProducts, getCatalogueCategory, searchCatalogue } from "@/lib/data/catalogue";
+import { activeCategories, catalogueEntries, getCatalogueCategory, searchCatalogue } from "@/lib/data/catalogue";
 
 export const metadata: Metadata = {
   title: "Product catalogue",
@@ -39,14 +39,14 @@ export default async function CataloguePage({ searchParams }: PageProps<"/catalo
           <p className="line-clamp-3 max-w-3xl text-body-lg text-fg-muted">
             {current
               ? current.description || `${current.productCount} products in ${current.name}. Ask us for pricing and availability on any of them.`
-              : `${catalogueProducts.length} products across ${activeCategories.length} categories: digital signage, kiosks, touch displays, POS, computing and software.`}
+              : `${catalogueEntries.length} products across ${activeCategories.length} categories: digital signage, kiosks, touch displays, POS, computing and software.`}
           </p>
         </div>
       </div>
 
       <CatalogueToolbar
         categories={activeCategories.map(({ slug, name, productCount }) => ({ slug, name, productCount }))}
-        total={catalogueProducts.length}
+        total={catalogueEntries.length}
         category={current?.slug ?? null}
         query={query}
       />

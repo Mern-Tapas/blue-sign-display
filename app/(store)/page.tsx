@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/card";
 import { IconTile } from "@/components/ui/icon-tile";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/cn";
-import { activeCategories, catalogueProducts } from "@/lib/data/catalogue";
+import { activeCategories, catalogueEntries } from "@/lib/data/catalogue";
 import { iqWorldCapabilities, placements, series, signageComparison, WARRANTY, type Placement } from "@/lib/data/can-products";
 
 const placementIcon: Record<Placement, React.ReactNode> = {
@@ -117,7 +117,7 @@ export default function HomePage() {
         <SectionHeader
           title="Beyond signage,"
           muted="the full catalogue"
-          description={`${catalogueProducts.length} products: kiosks, touch displays, POS, mini PCs, refurbished computing and software.`}
+          description={`${catalogueEntries.length} products: kiosks, touch displays, POS, mini PCs, refurbished computing and software.`}
           href="/catalogue"
           linkLabel="Browse catalogue"
         />

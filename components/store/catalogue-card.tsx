@@ -17,7 +17,7 @@ export function CatalogueCard({ product: p, categoryName, preload }: CatalogueCa
   const specs = keySpecs(p);
   return (
     <Card asChild padding="none" interactive className="group h-full overflow-hidden">
-      <Link href={`/catalogue/${p.slug}`}>
+      <Link href={p.href ?? `/catalogue/${p.slug}`}>
         <div className="relative m-2 mb-0 aspect-square overflow-hidden rounded-xl bg-white">
           {cover && (
             <Image
@@ -28,6 +28,11 @@ export function CatalogueCard({ product: p, categoryName, preload }: CatalogueCa
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
               className="object-contain p-3 transition-transform duration-(--dur-slow) group-hover:scale-[1.03]"
             />
+          )}
+          {p.brand && (
+            <Badge tone="solid" size="sm" className="absolute top-2 left-2">
+              {p.brand}
+            </Badge>
           )}
           {(p.videos.length > 0 || p.brochure) && (
             <div className="absolute right-2 bottom-2 flex gap-1">

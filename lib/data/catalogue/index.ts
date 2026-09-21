@@ -5,6 +5,7 @@
  * Never edit the JSON files by hand.
  * Server-only: the JSON is ~400 KB, so pass individual products to client components as props.
  */
+import { series, sizeRange } from "@/lib/data/can-products";
 import data from "./catalogue.json";
 import mediaMap from "./media.json";
 
@@ -47,24 +48,68 @@ export type CatalogueProduct = {
   brochure: string | null;
   sortOrder: number;
   updatedAt: string;
+  /** Set for CAN series listed in the catalogue: their detail page lives under /products. */
+  href?: string;
+  brand?: "CAN";
 };
 
 export const catalogueSource = data.source;
 export const catalogueImportedAt = data.importedAt;
 
-export const catalogueCategories = (data.categories as CatalogueCategory[])
-  .map((c) => ({ ...c, image: local(c.image) }))
-  .sort((a, b) => a.sortOrder - b.sortOrder || a.name.localeCompare(b.name));
-
-/** Categories that have at least one product. */
-export const activeCategories = catalogueCategories.filter((c) => c.productCount > 0);
-
+/** Products imported from dcat.shop (each has its own /catalogue/<slug> page). */
 export const catalogueProducts = (data.products as CatalogueProduct[]).map((p) => ({
   ...p,
   images: p.images.map((u) => local(u)),
   videos: p.videos.map((u) => local(u)),
   brochure: local(p.brochure),
 }));
+
+/** Which catalogue category each CAN series is listed under. */
+const CAN_CATEGORY: Record<string, string> = {
+  canlit: "kiosk-standee",
+  can: "kiosk-standee",
+  canvue: "kiosk-standee",
+  canwalk: "kiosk-standee",
+  canmount: "digital-signage-solution",
+  cannx: "digital-signage-solution",
+  candesk: "digital-signage-solution",
+  "candesk-touch": "digital-signage-solution",
+  "candesk-tab": "digital-signage-solution",
+  "candesk-wid": "digital-signage-solution",
+};
+
+/** CAN series shown as catalogue cards; they link to their existing /products/<slug> page. */
+const canEntries: CatalogueProduct[] = series.map((s, i) => ({
+  slug: `can-${s.slug}`,
+  name: `${s.name} · ${s.headline}`,
+  title: `${s.name} · ${s.headline.replace(/\.$/, "")}`,
+  highlights: s.highlights,
+  category: CAN_CATEGORY[s.slug] ?? null,
+  description: `${s.summary} Models: ${s.models.map((m) => m.name).join(", ")}. ${sizeRange(s)}.`,
+  specs: [],
+  terms: [],
+  images: s.images.slice(0, 1).map((img) => img.src),
+  videos: [],
+  brochure: null,
+  sortOrder: -1000 + i,
+  updatedAt: "",
+  href: `/products/${s.slug}`,
+  brand: "CAN",
+}));
+
+/** Everything listed on /catalogue: CAN series first, then the imported products. */
+export const catalogueEntries: CatalogueProduct[] = [...canEntries, ...catalogueProducts];
+
+export const catalogueCategories = (data.categories as CatalogueCategory[])
+  .map((c) => ({
+    ...c,
+    image: local(c.image),
+    productCount: catalogueEntries.filter((p) => p.category === c.slug).length,
+  }))
+  .sort((a, b) => a.sortOrder - b.sortOrder || a.name.localeCompare(b.name));
+
+/** Categories that have at least one product. */
+export const activeCategories = catalogueCategories.filter((c) => c.productCount > 0);
 
 export function getCatalogueProduct(slug: string) {
   return catalogueProducts.find((p) => p.slug === slug);
@@ -76,10 +121,10 @@ export function getCatalogueCategory(slug: string | null | undefined) {
 
 export function searchCatalogue({ query, category }: { query?: string; category?: string }) {
   const terms = (query ?? "").toLowerCase().split(/\s+/).filter(Boolean);
-  return catalogueProducts.filter((p) => {
+  return catalogueEntries.filter((p) => {
     if (category && p.category !== category) return false;
     if (!terms.length) return true;
-    const haystack = `${p.name} ${p.specs.map((s) => `${s.label} ${s.value}`).join(" ")} ${
+    const haystack = `${p.name} ${p.brand ? p.description : ""} ${p.specs.map((s) => `${s.label} ${s.value}`).join(" ")} ${
       getCatalogueCategory(p.category)?.name ?? ""
     }`.toLowerCase();
     return terms.every((t) => haystack.includes(t));
