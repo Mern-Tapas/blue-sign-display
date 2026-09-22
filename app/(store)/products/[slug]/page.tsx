@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AppWindow, ArrowUpRight, Check } from "lucide-react";
+import { AppWindow, Check } from "lucide-react";
 import { SectionHeader } from "@/components/layout/section-header";
 import { ModelPicker } from "@/components/store/model-picker";
 import { SeriesCard } from "@/components/store/series-card";
 import { SeriesGallery } from "@/components/store/series-gallery";
 import { Badge } from "@/components/ui/badge";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import { DescriptionList } from "@/components/ui/description-list";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -52,7 +50,6 @@ export default async function SeriesPage({ params }: PageProps<"/products/[slug]
 
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
-              <p className="text-label text-accent-fg">{s.eyebrow}</p>
               <h1 className="text-display-lg">
                 {s.name}
                 <span className="text-fg-muted"> · {s.headline}</span>
@@ -113,7 +110,7 @@ export default async function SeriesPage({ params }: PageProps<"/products/[slug]
                       </TableCell>
                       <TableCell className="figures">{m.size}″</TableCell>
                       <TableCell className="whitespace-nowrap figures">{m.pixels}</TableCell>
-                      <TableCell className="whitespace-nowrap figures">{m.brightness ? `${m.brightness} nits` : "–"}</TableCell>
+                      <TableCell className="whitespace-nowrap figures">{m.brightness ? `${m.brightness} nits` : "-"}</TableCell>
                       <TableCell className="figures">{m.dimensions}</TableCell>
                       <TableCell className="whitespace-nowrap figures">
                         {m.netWeight} / {m.grossWeight}
@@ -157,20 +154,6 @@ export default async function SeriesPage({ params }: PageProps<"/products/[slug]
             </Card>
           </div>
         </section>
-      )}
-
-      {s.apps.includes("IQ World") && (
-        <Card variant="accent" padding="lg" className="gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="max-w-xl">
-            <h2 className="text-heading-md">Manage your {s.name} from IQ World</h2>
-            <p className="mt-1 text-body text-fg-on-accent-muted">
-              Playlists, schedules, split screens and remote power on/off from Android, Windows, macOS or the web.
-            </p>
-          </div>
-          <Button asChild variant="inverse" size="lg" trailingIcon={<ArrowUpRight aria-hidden />}>
-            <Link href="/iq-world">See IQ World plans</Link>
-          </Button>
-        </Card>
       )}
 
       <section aria-label="Related displays">

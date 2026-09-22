@@ -1,28 +1,39 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Backpack, BadgeCheck, Check, Fullscreen, Monitor, RectangleVertical, ShieldCheck, Smartphone, Tablet, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BadgeCheck, Check, Fullscreen, ShieldCheck, Smartphone, X } from "lucide-react";
 import { SectionHeader } from "@/components/layout/section-header";
+import { HomeHero } from "@/components/store/home-hero";
 import { SeriesCard } from "@/components/store/series-card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { IconTile } from "@/components/ui/icon-tile";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/cn";
 import { activeCategories, catalogueEntries } from "@/lib/data/catalogue";
-import { iqWorldCapabilities, placements, series, signageComparison, WARRANTY, type Placement } from "@/lib/data/can-products";
+import {
+  DISPLAYNODE_NAME,
+  DISPLAYNODE_URL,
+  displayNodeFeatures,
+  displayNodeHeadline,
+  displayNodeTagline,
+  placements,
+  series,
+  signageComparison,
+  WARRANTY,
+  type Placement,
+} from "@/lib/data/can-products";
 
-const placementIcon: Record<Placement, React.ReactNode> = {
-  floor: <RectangleVertical aria-hidden />,
-  portable: <Backpack aria-hidden />,
-  wall: <Monitor aria-hidden />,
-  desk: <Tablet aria-hidden />,
+/** Photo and grid footprint for each placement tile (floor leads, then portable, wall, desk). */
+const placementTiles: Record<Placement, { image: string; span: string }> = {
+  floor: { image: "/products/can/canvue-finishes.webp", span: "sm:col-span-2 lg:row-span-2" },
+  portable: { image: "/products/can/canwalk-views.webp", span: "sm:col-span-2" },
+  wall: { image: "/products/can/cannx-range.webp", span: "" },
+  desk: { image: "/products/can/candesk-touch.webp", span: "" },
 };
 
 const valueProps = [
   { icon: <Fullscreen aria-hidden />, title: "10.1″ to 65″", text: "HD, Full HD and 4K Ultra HD panels" },
   { icon: <ShieldCheck aria-hidden />, title: "IPS + toughened glass", text: "A+ grade panels, 178° viewing" },
-  { icon: <Smartphone aria-hidden />, title: "Run it from IQ World", text: "Playlists and schedules, managed remotely" },
+  { icon: <Smartphone aria-hidden />, title: `Run it from ${DISPLAYNODE_NAME}`, text: "Schedule content remotely" },
   { icon: <BadgeCheck aria-hidden />, title: WARRANTY, text: "On every CAN display" },
 ];
 
@@ -33,47 +44,20 @@ const featured = ["canvue", "can", "canmount", "canlit", "canwalk", "candesk-tou
 export default function HomePage() {
   return (
     <div className="container-ds flex flex-col gap-(--section-gap)">
-      <div className="flex flex-col gap-4">
-        <section aria-labelledby="hero-title" className="relative isolate overflow-hidden rounded-2xl bg-surface-contrast shadow-card">
-          <Image
-            src="/products/can/can-range-hero.webp"
-            alt="The CAN range: pedestal, easel, totem, wall, backpack and desk displays"
-            width={1600}
-            height={896}
-            preload
-            sizes="(min-width: 1320px) 1272px, 100vw"
-            className="h-[26rem] w-full object-cover object-bottom sm:h-[32rem] lg:h-[36rem]"
-          />
-          <div className="absolute inset-0 -z-0 bg-gradient-to-t from-[rgb(5_12_18/0.85)] via-[rgb(5_12_18/0.35)] to-transparent lg:bg-gradient-to-r" />
-          <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-4 p-6 text-white sm:p-10 lg:top-0 lg:max-w-xl lg:justify-center">
-            <Badge tone="solid">CAN digital signage</Badge>
-            <h1 id="hero-title" className="text-display-lg sm:text-display-xl">
-              Stands out in any space.
-            </h1>
-            <p className="max-w-md text-body-lg text-white/85">
-              Floor, wall, desk or on your back: one range of IPS displays, all managed from the IQ World app.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <Button asChild size="lg" trailingIcon={<ArrowUpRight aria-hidden />}>
-                <Link href="/products">Explore displays</Link>
-              </Button>
-              <Button asChild size="lg" variant="inverse">
-                <Link href="/contact">Get a quote</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+      <div className="flex flex-col gap-5">
+        <HomeHero />
 
-        <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4" aria-label="Why CAN">
+        <ul
+          aria-label="Why CAN"
+          className="grid gap-x-6 gap-y-5 px-1 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-border-subtle lg:[&>li+li]:pl-6"
+        >
           {valueProps.map((v) => (
-            <li key={v.title}>
-              <Card padding="sm" variant="outline" className="h-full flex-row items-center gap-3">
-                <IconTile tone="accent">{v.icon}</IconTile>
-                <div>
-                  <p className="text-body-strong">{v.title}</p>
-                  <p className="text-caption text-fg-muted">{v.text}</p>
-                </div>
-              </Card>
+            <li key={v.title} className="flex items-start gap-3">
+              <span className="mt-0.5 text-accent-fg [&_svg]:size-icon-lg">{v.icon}</span>
+              <div>
+                <p className="text-body-strong">{v.title}</p>
+                <p className="text-body text-fg-muted">{v.text}</p>
+              </div>
             </li>
           ))}
         </ul>
@@ -81,24 +65,40 @@ export default function HomePage() {
 
       <section aria-label="Shop by placement">
         <SectionHeader title="Which CAN is" muted="right for you?" description="Different styles, for different spaces." href="/products" linkLabel="All displays" />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {placements.map((p) => {
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[repeat(2,minmax(0,17rem))]">
+          {placements.map((p, i) => {
             const count = series.filter((s) => s.placement === p.value).length;
+            const tile = placementTiles[p.value];
+            const feature = i === 0;
             return (
-              <Card key={p.value} asChild interactive className="group">
-                <Link href={`/products?placement=${p.value}`}>
-                  <IconTile size="lg" tone="neutral" className="transition-colors duration-(--dur-fast) group-hover:bg-accent group-hover:text-fg-on-accent">
-                    {placementIcon[p.value]}
-                  </IconTile>
-                  <div>
-                    <h3 className="text-title">{p.label}</h3>
-                    <p className="mt-1 text-body text-fg-muted">{p.description}</p>
+              <Link
+                key={p.value}
+                href={`/products?placement=${p.value}`}
+                className={cn(
+                  "group lift relative flex min-h-64 flex-col overflow-hidden rounded-2xl bg-surface shadow-card outline-offset-4 active:scale-[0.99] active:duration-(--dur-instant)",
+                  tile.span,
+                )}
+              >
+                <div className="relative m-1.5 mb-0 min-h-40 flex-1 overflow-hidden rounded-xl bg-white">
+                  <Image
+                    src={tile.image}
+                    alt=""
+                    fill
+                    sizes={feature ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"}
+                    className="object-contain p-4 transition-transform duration-(--dur-slow) ease-(--ease-out) group-hover:scale-[1.04] motion-reduce:group-hover:scale-100"
+                  />
+                </div>
+                <div className="flex items-end justify-between gap-4 px-5 pt-3.5 pb-4">
+                  <div className="min-w-0">
+                    <h3 className={feature ? "text-heading-sm" : "text-title"}>{p.label}</h3>
+                    {(feature || i === 1) && <p className="mt-0.5 max-w-sm text-body text-fg-muted">{p.description}</p>}
                   </div>
-                  <p className="mt-auto text-label text-accent-fg">
-                    {count} series →
-                  </p>
-                </Link>
-              </Card>
+                  <span className="inline-flex shrink-0 items-center gap-1 text-label text-accent-fg">
+                    {count} series
+                    <ArrowRight aria-hidden className="size-icon-sm transition-transform duration-(--dur-base) ease-(--ease-out) group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+              </Link>
             );
           })}
         </div>
@@ -124,25 +124,26 @@ export default function HomePage() {
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {activeCategories.slice(0, 12).map((c) => (
             <li key={c.slug}>
-              <Card asChild padding="none" interactive className="group h-full overflow-hidden">
-                <Link href={`/catalogue?category=${c.slug}`}>
-                  <span className="relative m-2 mb-0 block aspect-square overflow-hidden rounded-xl bg-white">
-                    {c.image && (
-                      <Image
-                        src={c.image}
-                        alt=""
-                        fill
-                        sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
-                        className="object-contain p-2 transition-transform duration-(--dur-slow) group-hover:scale-[1.04]"
-                      />
-                    )}
-                  </span>
-                  <span className="flex flex-col p-3">
-                    <span className="text-body-strong">{c.name}</span>
-                    <span className="text-caption text-fg-muted">{c.productCount} products</span>
-                  </span>
-                </Link>
-              </Card>
+              <Link
+                href={`/catalogue?category=${c.slug}`}
+                className="group lift flex h-full flex-col overflow-hidden rounded-2xl bg-surface shadow-card outline-offset-4 active:scale-[0.99] active:duration-(--dur-instant)"
+              >
+                <span className="relative m-1.5 mb-0 block aspect-square overflow-hidden rounded-xl bg-white">
+                  {c.image && (
+                    <Image
+                      src={c.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
+                      className="object-contain p-2 transition-transform duration-(--dur-slow) ease-(--ease-out) group-hover:scale-[1.04] motion-reduce:group-hover:scale-100"
+                    />
+                  )}
+                </span>
+                <span className="flex flex-col px-3.5 pt-3 pb-3.5">
+                  <span className="text-body-strong">{c.name}</span>
+                  <span className="text-caption text-fg-muted figures">{c.productCount} products</span>
+                </span>
+              </Link>
             </li>
           ))}
         </ul>
@@ -193,23 +194,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section aria-labelledby="iq-title">
+      <section aria-labelledby="displaynode-title">
         <Card variant="contrast" padding="lg" className="overflow-hidden lg:flex-row lg:items-center lg:gap-12">
           <div className="flex flex-col items-start gap-4 lg:max-w-md">
-            <Badge tone="solid">Included software</Badge>
-            <h2 id="iq-title" className="text-heading-lg sm:text-display-lg">
-              One app for every screen.
+            <h2 id="displaynode-title" className="text-heading-lg sm:text-display-lg">
+              {displayNodeHeadline}
             </h2>
-            <p className="text-body-lg text-fg-on-contrast-muted">
-              IQ World is the centralized display control app: build playlists, schedule content and switch screens on or off
-              from Android, Windows, macOS or the web.
-            </p>
+            <p className="text-body-lg text-fg-on-contrast-muted">{displayNodeTagline}</p>
             <Button asChild variant="inverse" size="lg" trailingIcon={<ArrowUpRight aria-hidden />}>
-              <Link href="/iq-world">Compare Basic and PRO</Link>
+              <a href={DISPLAYNODE_URL} target="_blank" rel="noopener noreferrer">
+                Visit {DISPLAYNODE_NAME}
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
             </Button>
           </div>
-          <ul className="grid flex-1 gap-2 sm:grid-cols-2" aria-label="IQ World capabilities">
-            {iqWorldCapabilities.slice(0, 8).map((c) => (
+          <ul className="grid flex-1 gap-2 sm:grid-cols-2" aria-label={`${DISPLAYNODE_NAME} features`}>
+            {displayNodeFeatures.map((c) => (
               <li key={c} className="flex items-center gap-3 rounded-lg bg-tile-on-color px-4 py-3 text-body">
                 <Check aria-hidden className="size-icon-md shrink-0 text-fg-on-contrast" />
                 {c}
@@ -227,7 +227,7 @@ export default function HomePage() {
           Share the size, placement and quantity you need, and we&apos;ll come back with pricing and availability.
         </p>
         <Button asChild size="xl" trailingIcon={<ArrowUpRight aria-hidden />}>
-          <Link href="/contact">Request a quote</Link>
+          <Link href="/contact">Get a quote</Link>
         </Button>
       </section>
     </div>

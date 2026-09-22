@@ -5,7 +5,7 @@
 
 export type Placement = "floor" | "portable" | "wall" | "desk";
 export type Resolution = "HD" | "Full HD" | "4K Ultra HD";
-export type AppName = "YouTube" | "Media Center" | "Web Browser" | "Android" | "IQ World";
+export type AppName = "YouTube" | "Media Center" | "Web Browser" | "Android";
 
 export type ProductImage = { src: string; alt: string; width: number; height: number };
 
@@ -54,7 +54,7 @@ export const placements: { value: Placement; label: string; description: string 
   { value: "floor", label: "Floor standing", description: "Pedestal, easel and totem displays for entrances, lobbies and aisles." },
   { value: "portable", label: "Portable", description: "Battery-powered displays that go where the crowd is." },
   { value: "wall", label: "Wall mounted", description: "Slim portrait and landscape screens for walls and menu boards." },
-  { value: "desk", label: "Desk & counter", description: "Compact 10–15.6″ displays for counters, tables and reception desks." },
+  { value: "desk", label: "Desk & counter", description: "Compact 10.1-15.6″ displays for counters, tables and reception desks." },
 ];
 
 export const WARRANTY = "1 year warranty";
@@ -67,7 +67,7 @@ const img = (file: string, alt: string, width = 1400, height = 1400): ProductIma
   height,
 });
 
-const ALL_APPS: AppName[] = ["YouTube", "Media Center", "Web Browser", "Android", "IQ World"];
+const ALL_APPS: AppName[] = ["YouTube", "Media Center", "Web Browser", "Android"];
 
 const SIGNAGE_FEATURES = [
   "Inbuilt image & video editor",
@@ -296,7 +296,7 @@ export const series: Series[] = [
         rows: [
           { label: "Auto on", value: "Yes" },
           { label: "Media center", value: "Yes" },
-          { label: "Working temperature", value: "0–40 °C" },
+          { label: "Working temperature", value: "0-40 °C" },
           { label: "Software language", value: "English" },
         ],
       },
@@ -353,7 +353,7 @@ export const series: Series[] = [
           { label: "Auto on", value: "Yes" },
           { label: "Blue back", value: "Yes" },
           { label: "Media center", value: "Yes" },
-          { label: "Working temperature", value: "0–40 °C" },
+          { label: "Working temperature", value: "0-40 °C" },
           { label: "Software language", value: "English" },
         ],
       },
@@ -411,7 +411,7 @@ export function sizeRange(s: Series) {
   const sizes = s.models.map((m) => m.size);
   const min = Math.min(...sizes);
   const max = Math.max(...sizes);
-  return min === max ? `${min}″` : `${min}″–${max}″`;
+  return min === max ? `${min}″` : `${min}-${max}″`;
 }
 
 export function placementLabel(p: Placement) {
@@ -432,39 +432,18 @@ export const signageComparison: { question: string; digital: string; traditional
   { question: "Exposure", digital: "Advantageous", traditional: "Limited", digitalWins: true },
 ];
 
-/** IQ World content management app: Basic vs PRO plan features. */
-export const iqWorldPlans: { feature: string; basic: boolean; pro: boolean }[] = [
-  { feature: "Customer registration", basic: true, pro: true },
-  { feature: "Customer detailed report", basic: true, pro: true },
-  { feature: "Playlist management", basic: true, pro: true },
-  { feature: "Schedule management", basic: true, pro: true },
-  { feature: "Devices management", basic: true, pro: true },
-  { feature: "Text scroller / URL / PDF", basic: true, pro: true },
-  { feature: "YouTube URL link upload", basic: true, pro: true },
-  { feature: "PDF upload", basic: true, pro: true },
-  { feature: "Remote device power on/off", basic: true, pro: true },
-  { feature: "Device analytics", basic: false, pro: true },
-  { feature: "Screen time report", basic: false, pro: true },
-  { feature: "OTP authentication when uploading new content", basic: false, pro: true },
-  { feature: "Intelligent split screen", basic: false, pro: true },
-  { feature: "On-demand screen orientation", basic: false, pro: true },
-  { feature: "IQ Editor (in-built text, image & video editor)", basic: false, pro: true },
-  { feature: "Technical support", basic: true, pro: true },
+/** DisplayNode: the signage management platform the store links to (opens in a new tab). */
+export const DISPLAYNODE_URL = "https://displaynode.cloud/";
+export const DISPLAYNODE_NAME = "DisplayNode";
+/** Headline and tagline as published on displaynode.cloud. */
+export const displayNodeHeadline = "Every screen. One command center.";
+export const displayNodeTagline = "Design, schedule, and publish content to any display, anywhere. In seconds, not site visits.";
+/** Capabilities listed on displaynode.cloud. */
+export const displayNodeFeatures = [
+  "Drag-and-drop content design",
+  "Smart scheduling with dayparting",
+  "Remote device management",
+  "Real-time screen health monitoring",
+  "Multi-zone layouts",
+  "One dashboard for every location",
 ];
-
-export const iqWorldCapabilities = [
-  "Content management system (CMS)",
-  "Real-time lead analytics and statistics",
-  "Schedule management",
-  "YouTube",
-  "Automated email system",
-  "Smart split screen",
-  "In-built image & video editor",
-  "Easy-to-edit layouts",
-  "Stickers and font collection",
-  "Video maker and editor",
-  "Continuous scrolling text",
-  "Effects and photo filters",
-];
-
-export const iqWorldPlatforms = ["Android", "Windows", "macOS", "Web (ds.iqtv.in)"];

@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
       { source: "/design-system/tokens", destination: "/design-system/color", permanent: true },
       { source: "/design-system/commerce", destination: "/design-system/listing", permanent: true },
       { source: "/design-system/filters", destination: "/design-system/listing", permanent: true },
+      // The IQ World page was replaced by DisplayNode; old links go straight to its site.
+      { source: "/iq-world", destination: "https://displaynode.cloud/", permanent: false },
     ];
   },
 };

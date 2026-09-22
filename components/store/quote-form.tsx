@@ -121,7 +121,7 @@ export function QuoteForm({ defaultModel }: { defaultModel?: string }) {
               <Input type="number" min={1} inputMode="numeric" value={values.quantity} onChange={(e) => set("quantity")(e.target.value)} />
             </Field>
           </div>
-          <Field label="Anything else?" hint="Where it goes, content you plan to show, IQ World Basic or PRO…" className="sm:col-span-2">
+          <Field label="Anything else?" hint="Where it goes, content you plan to show, number of locations…" className="sm:col-span-2">
             <Textarea autosize minRows={3} value={values.message} onChange={(e) => set("message")(e.target.value)} />
           </Field>
         </div>

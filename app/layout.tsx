@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: "BlueSigns · CAN digital signage displays",
     template: "%s · BlueSigns",
   },
-  description: "Shop CAN digital signage: floor-standing, portable, wall-mounted and desk displays from 10.1″ to 65″, managed with IQ World.",
+  description: "Shop CAN digital signage: floor-standing, portable, wall-mounted and desk displays from 10.1″ to 65″, managed with DisplayNode.",
 };
 
 export const viewport: Viewport = {

@@ -25,14 +25,27 @@ import { IconTile } from "@/components/ui/icon-tile";
 import { Sheet, SheetBody, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/cn";
-import { placements, series, sizeRange, SITE_URL, WARRANTY, type Placement } from "@/lib/data/can-products";
+import {
+  DISPLAYNODE_NAME,
+  DISPLAYNODE_URL,
+  placements,
+  series,
+  sizeRange,
+  SITE_URL,
+  WARRANTY,
+  type Placement,
+} from "@/lib/data/can-products";
 
-const links = [
+/** `external` links leave the store and open in a new tab. */
+const links: { href: string; label: string; external?: boolean }[] = [
   { href: "/catalogue", label: "Catalogue" },
-  { href: "/iq-world", label: "IQ World" },
+  { href: DISPLAYNODE_URL, label: DISPLAYNODE_NAME, external: true },
   { href: "/#why-digital", label: "Why digital" },
   { href: "/contact", label: "Contact" },
 ];
+
+/** Props that open a link in a new tab safely. */
+const newTab = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 const placementIcon: Record<Placement, React.ReactNode> = {
   floor: <RectangleVertical aria-hidden />,
@@ -74,10 +87,15 @@ function UtilityStrip() {
             <BadgeCheck aria-hidden className="size-icon-sm text-fg-on-contrast" />
             {WARRANTY} on every CAN display
           </span>
-          <span className="hidden items-center gap-1.5 md:inline-flex">
+          <a
+            href={DISPLAYNODE_URL}
+            {...newTab}
+            className="hidden items-center gap-1.5 transition-colors duration-(--dur-fast) hover:text-fg-on-contrast md:inline-flex"
+          >
             <Smartphone aria-hidden className="size-icon-sm text-fg-on-contrast" />
-            Manage every screen from the IQ World app
-          </span>
+            Manage every screen with {DISPLAYNODE_NAME}
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
         </p>
         <a
           href={`https://${SITE_URL}`}
@@ -219,18 +237,26 @@ function MobileMenu({ pathname }: { pathname: string }) {
             </AccordionItem>
           </Accordion>
           <nav aria-label="More" className="flex flex-col">
-            {links.map((l) => (
-              <SheetClose asChild key={l.href}>
-                <Link
-                  href={l.href}
-                  aria-current={isActive(pathname, l.href) ? "page" : undefined}
-                  className="flex h-row-md items-center justify-between border-b border-border-subtle text-body-strong last:border-b-0 aria-[current=page]:text-accent-fg"
-                >
-                  {l.label}
-                  <ArrowRight aria-hidden className="size-icon-md text-fg-muted" />
-                </Link>
-              </SheetClose>
-            ))}
+            {links.map((l) => {
+              const cls =
+                "flex h-row-md items-center justify-between border-b border-border-subtle text-body-strong last:border-b-0 aria-[current=page]:text-accent-fg";
+              return (
+                <SheetClose asChild key={l.href}>
+                  {l.external ? (
+                    <a href={l.href} {...newTab} className={cls}>
+                      {l.label}
+                      <span className="sr-only"> (opens in a new tab)</span>
+                      <ArrowUpRight aria-hidden className="size-icon-md text-fg-muted" />
+                    </a>
+                  ) : (
+                    <Link href={l.href} aria-current={isActive(pathname, l.href) ? "page" : undefined} className={cls}>
+                      {l.label}
+                      <ArrowRight aria-hidden className="size-icon-md text-fg-muted" />
+                    </Link>
+                  )}
+                </SheetClose>
+              );
+            })}
           </nav>
         </SheetBody>
         <SheetFooter>
@@ -273,13 +299,21 @@ export function SiteHeader() {
             <NavigationMenu.List className="flex items-center">
               <DisplaysMenu active={pathname.startsWith("/products")} />
               {links.map((l) => {
-                const active = isActive(pathname, l.href);
+                const active = !l.external && isActive(pathname, l.href);
                 return (
                   <NavigationMenu.Item key={l.href}>
                     <NavigationMenu.Link asChild active={active}>
-                      <Link href={l.href} className={navLink} aria-current={active ? "page" : undefined}>
-                        {l.label}
-                      </Link>
+                      {l.external ? (
+                        <a href={l.href} {...newTab} className={navLink}>
+                          {l.label}
+                          <ArrowUpRight aria-hidden className="size-icon-sm" />
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                      ) : (
+                        <Link href={l.href} className={navLink} aria-current={active ? "page" : undefined}>
+                          {l.label}
+                        </Link>
+                      )}
                     </NavigationMenu.Link>
                   </NavigationMenu.Item>
                 );

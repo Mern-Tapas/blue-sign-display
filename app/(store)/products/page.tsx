@@ -34,7 +34,7 @@ export default async function ProductsPage({ searchParams }: PageProps<"/product
           <p className="max-w-2xl text-body-lg text-fg-muted">
             {current
               ? current.description
-              : "Different styles for different spaces. Every display runs the IQ World app and comes with a 1 year warranty."}
+              : "Different styles for different spaces. Manage every screen with DisplayNode; every display comes with a 1 year warranty."}
           </p>
         </div>
       </div>

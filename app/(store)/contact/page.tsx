@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const steps = [
   { icon: <MessageSquare aria-hidden />, title: "Share your requirement", text: "Model, quantity and where the screens will go." },
   { icon: <Ruler aria-hidden />, title: "We confirm the fit", text: "Size, placement and resolution for your space." },
-  { icon: <Smartphone aria-hidden />, title: "Set up IQ World", text: "Pick Basic or PRO to manage your content." },
+  { icon: <Smartphone aria-hidden />, title: "Set up DisplayNode", text: "Design and schedule content for every screen from one dashboard." },
   { icon: <BadgeCheck aria-hidden />, title: WARRANTY, text: "Every CAN display is covered." },
 ];
 

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { placements, series, SITE_URL, WARRANTY } from "@/lib/data/can-products";
+import { DISPLAYNODE_NAME, DISPLAYNODE_URL, placements, series, SITE_URL, WARRANTY } from "@/lib/data/can-products";
 
-const columns = [
+type FooterLink = { label: string; href: string; external?: boolean };
+
+const columns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Displays",
     links: placements.map((p) => ({ label: p.label, href: `/products?placement=${p.value}` })),
@@ -16,7 +18,7 @@ const columns = [
     title: "Company",
     links: [
       { label: "Full product catalogue", href: "/catalogue" },
-      { label: "IQ World software", href: "/iq-world" },
+      { label: DISPLAYNODE_NAME, href: DISPLAYNODE_URL, external: true },
       { label: "Why digital signage", href: "/#why-digital" },
       { label: "Request a quote", href: "/contact" },
     ],
@@ -31,24 +33,30 @@ export function SiteFooter() {
           <div className="flex flex-col gap-4">
             <BrandMark inverted />
             <p className="max-w-xs text-body text-fg-on-contrast-muted">
-              CAN digital signage for every space: floor, wall, desk and on the move. Every display is managed from
-              the IQ World app and backed by a {WARRANTY}.
+              CAN digital signage for every space: floor, wall, desk and on the move. Manage every screen with{" "}
+              {DISPLAYNODE_NAME}. Every display is backed by a {WARRANTY}.
             </p>
           </div>
           {columns.map((col) => (
             <nav key={col.title} aria-label={col.title}>
               <p className="mb-4 text-label text-fg-on-contrast">{col.title}</p>
               <ul className="flex flex-col gap-2.5">
-                {col.links.map((l) => (
-                  <li key={l.label}>
-                    <Link
-                      href={l.href}
-                      className="text-body text-fg-on-contrast-muted transition-colors duration-(--dur-fast) hover:text-fg-on-contrast"
-                    >
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
+                {col.links.map((l) => {
+                  const cls = "text-body text-fg-on-contrast-muted transition-colors duration-(--dur-fast) hover:text-fg-on-contrast";
+                  return (
+                    <li key={l.label}>
+                      {l.external ? (
+                        <a href={l.href} target="_blank" rel="noopener noreferrer" className={cls}>
+                          {l.label} ↗<span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                      ) : (
+                        <Link href={l.href} className={cls}>
+                          {l.label}
+                        </Link>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
           ))}
