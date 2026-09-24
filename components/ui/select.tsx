@@ -59,9 +59,13 @@ export function Select({
           className,
         )}
       >
-        <span className="flex min-w-0 items-center gap-1.5 truncate">
-          {prefix && <span className="text-fg-muted">{prefix}</span>}
-          <SelectPrimitive.Value placeholder={placeholder} />
+        {/* `text-overflow` is ignored on a flex container, so the value gets its own block to
+            truncate in — otherwise a long selected label clips mid-glyph with no "…". */}
+        <span className="flex min-w-0 items-center gap-1.5">
+          {prefix && <span className="shrink-0 text-fg-muted">{prefix}</span>}
+          <span className="min-w-0 truncate">
+            <SelectPrimitive.Value placeholder={placeholder} />
+          </span>
         </span>
         <SelectPrimitive.Icon asChild>
           <ChevronDown aria-hidden className="transition-transform duration-(--dur-base) ease-out group-data-[state=open]/control:rotate-180" />

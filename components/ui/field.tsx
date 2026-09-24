@@ -120,7 +120,11 @@ export function Field({
   };
   return (
     <FieldContext.Provider value={value}>
-      <div data-slot="field" className={cn("flex flex-col gap-2", className)} {...props}>
+      {/* min-w-0: a Field is almost always a grid or flex item, and its control may hold one long
+          unbreakable string (a selected product title, an email, a file name). Without this the
+          item's minimum contribution is that string's width and the whole track blows past the
+          viewport; with it, the control's own `truncate` can do its job. */}
+      <div data-slot="field" className={cn("flex min-w-0 flex-col gap-2", className)} {...props}>
         {(label || labelAction || counter) && (
           <div className="flex items-center justify-between gap-2">
             {label && (

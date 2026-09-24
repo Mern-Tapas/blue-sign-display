@@ -13,7 +13,11 @@ export function Breadcrumbs({ items, className, ...props }: BreadcrumbsProps) {
         {items.map((item, i) => {
           const last = i === items.length - 1;
           return (
+            // The separator leads each item rather than trailing it: the list wraps, and a trailing
+            // chevron would dangle at the end of a wrapped line (a 4-level catalogue trail does this
+            // at 360/390). Leading it means a wrap always breaks before the chevron.
             <li key={`${item.label}-${i}`} className="inline-flex items-center gap-1.5">
+              {i > 0 && <ChevronRight aria-hidden className="size-icon-sm text-fg-subtle" />}
               {item.href && !last ? (
                 <Link href={item.href} className="hit-area relative rounded-xs transition-colors duration-(--dur-fast) hover:text-fg">
                   {item.label}
@@ -23,7 +27,6 @@ export function Breadcrumbs({ items, className, ...props }: BreadcrumbsProps) {
                   {item.label}
                 </span>
               )}
-              {!last && <ChevronRight aria-hidden className="size-icon-sm text-fg-subtle" />}
             </li>
           );
         })}

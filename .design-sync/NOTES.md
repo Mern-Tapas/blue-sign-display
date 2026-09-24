@@ -39,3 +39,21 @@
 - `[FONT_MISSING] "Geist Fallback", "Geist Mono Fallback"`: these are next/font's metric-adjusted
   `src: local(Arial)` fallbacks (declared in design-system/fonts/fonts.css); there is no file to ship.
   The real Geist / Geist Mono woff2 files do ship. Accepted.
+
+## Intrinsic sizing gotchas (found auditing the storefront, 2026-09-23)
+- **`Field` needs `min-w-0`.** A `Field` is nearly always a grid or flex item. Without `min-w-0` its
+  *minimum contribution* is content-based, so one long unbreakable string in its control (a selected
+  product title, an email, a file name) sizes the whole track and pushes the page past the viewport.
+  `/contact?model=<a long catalogue title>` measured `scrollWidth` 499 vs `clientWidth` 375 at 390px
+  before the fix. `min-w-0` on the *control* is not enough — the grid item is what needs it.
+- **`truncate` does nothing on a flex container.** `text-overflow: ellipsis` only applies to a block
+  container, so `Select`'s trigger clipped its value mid-glyph with no "…". The value now sits in its
+  own `min-w-0 truncate` block inside the flex row. Note `SelectPrimitive.Value` does **not** forward
+  `className`, so the truncation has to live on a wrapper you render yourself.
+- **Put list separators *before* each item, not after.** `Breadcrumbs` wraps (`flex-wrap`), and a
+  trailing chevron dangles at the end of a wrapped line — the same defect the `meta-list` utility
+  exists to avoid. Rendering the chevron for `i > 0` means a wrap always breaks before it.
+- **Bare inline links are not touch targets.** The footer's links measured 45x18-98x18px: under the
+  WCAG 2.5.8 floor (24x24) and far under `--hit-min`. Links that sit on their own row get a row
+  token (`min-h-row-sm`); links inline in a sentence get `hit-area relative` instead, which grows the
+  target on coarse pointers only and never moves the text.

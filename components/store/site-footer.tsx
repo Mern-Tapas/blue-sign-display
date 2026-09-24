@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { DISPLAYNODE_NAME, DISPLAYNODE_URL, placements, series, SITE_URL, WARRANTY } from "@/lib/data/can-products";
@@ -40,14 +41,19 @@ export function SiteFooter() {
           {columns.map((col) => (
             <nav key={col.title} aria-label={col.title}>
               <p className="mb-4 text-label text-fg-on-contrast">{col.title}</p>
-              <ul className="flex flex-col gap-2.5">
+              <ul className="flex flex-col">
                 {col.links.map((l) => {
-                  const cls = "text-body text-fg-on-contrast-muted transition-colors duration-(--dur-fast) hover:text-fg-on-contrast";
+                  // A bare inline link here measured 18px tall, under the 24px WCAG 2.5.8 floor and
+                  // well under the system's 44px hit-min. The row token carries the target instead.
+                  const cls =
+                    "inline-flex min-h-row-sm items-center gap-1.5 text-body text-fg-on-contrast-muted transition-colors duration-(--dur-fast) hover:text-fg-on-contrast";
                   return (
-                    <li key={l.label}>
+                    <li key={l.label} className="flex">
                       {l.external ? (
                         <a href={l.href} target="_blank" rel="noopener noreferrer" className={cls}>
-                          {l.label} ↗<span className="sr-only"> (opens in a new tab)</span>
+                          {l.label}
+                          <ArrowUpRight aria-hidden className="size-icon-sm" />
+                          <span className="sr-only"> (opens in a new tab)</span>
                         </a>
                       ) : (
                         <Link href={l.href} className={cls}>
@@ -64,13 +70,16 @@ export function SiteFooter() {
         <div className="mt-10 flex flex-col gap-3 border-t border-edge-on-color pt-6 text-caption text-fg-on-contrast-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
             © 2026 BlueSigns. CAN displays by CAN Signage Display Pvt Ltd ·{" "}
+            {/* Inline in a sentence, so the target grows via hit-area (coarse pointers only,
+                no layout shift) rather than by becoming a block. */}
             <a
               href={`https://${SITE_URL}`}
               target="_blank"
-              rel="noreferrer"
-              className="underline-offset-2 transition-colors duration-(--dur-fast) hover:text-fg-on-contrast hover:underline"
+              rel="noopener noreferrer"
+              className="hit-area relative rounded-xs underline-offset-2 transition-colors duration-(--dur-fast) hover:text-fg-on-contrast hover:underline"
             >
               {SITE_URL}
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </p>
           <ThemeToggle variant="segmented" tone="contrast" className="bg-tile-on-color" />

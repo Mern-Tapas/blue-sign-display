@@ -115,7 +115,11 @@ export default async function CatalogueProductPage({ params }: PageProps<"/catal
                 </Button>
               )}
             </div>
-            <p className="text-caption text-fg-muted">Pricing on request · GST and delivery terms below</p>
+            {/* Only promise the terms when the import actually carried them: 16 of the products
+                (the software listings) have neither specs nor terms, and there is nothing below. */}
+            <p className="text-caption text-fg-muted">
+              Pricing on request{p.terms.length > 0 && " · GST and delivery terms below"}
+            </p>
           </div>
         </div>
       </div>

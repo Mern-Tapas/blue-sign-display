@@ -50,9 +50,15 @@ export default async function SeriesPage({ params }: PageProps<"/products/[slug]
 
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
-              <h1 className="text-display-lg">
+              {/* The separator is bound to the name with a non-breaking space so it can never
+                  orphan onto the start of a wrapped line, and the size steps like the catalogue
+                  detail h1 so a long name does not run to three lines on a phone. */}
+              <h1 className="text-heading-lg text-balance sm:text-display-lg">
                 {s.name}
-                <span className="text-fg-muted"> · {s.headline}</span>
+                <span className="text-fg-muted">
+                  {" · "}
+                  {s.headline}
+                </span>
               </h1>
               <p className="text-body-lg text-fg-muted">{s.summary}</p>
               <ul className="flex flex-wrap gap-1.5" aria-label="Highlights">

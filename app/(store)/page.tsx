@@ -135,13 +135,14 @@ export default function HomePage() {
                       alt=""
                       fill
                       sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
-                      className="object-contain p-2 transition-transform duration-(--dur-slow) ease-(--ease-out) group-hover:scale-[1.04] motion-reduce:group-hover:scale-100"
+                      className="object-cover transition-transform duration-(--dur-slow) ease-(--ease-out) group-hover:scale-[1.04] motion-reduce:group-hover:scale-100"
                     />
                   )}
                 </span>
                 <span className="flex flex-col px-3.5 pt-3 pb-3.5">
-                  <span className="text-body-strong">{c.name}</span>
-                  <span className="text-caption text-fg-muted figures">{c.productCount} products</span>
+                  {/* Two lines are reserved so the product count sits on the same baseline across the row. */}
+                  <span className="line-clamp-2 min-h-[calc(var(--text-body-strong--line-height)*2)] text-body-strong">{c.name}</span>
+                  <span className="mt-0.5 text-caption text-fg-muted figures">{c.productCount} products</span>
                 </span>
               </Link>
             </li>
