@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { DescriptionList, type DescriptionItem } from "@/components/ui/description-list";
 import { Inset } from "@/components/ui/inset";
 import { RadioCard, RadioCardGroup } from "@/components/ui/radio-card";
-import type { Model } from "@/lib/data/can-products";
+import type { Model } from "@/lib/data/displays";
 
 function modelFacts(m: Model): DescriptionItem[] {
   const items: DescriptionItem[] = [{ term: "Screen size", description: `${m.size}″` }];
@@ -52,7 +52,7 @@ export function ModelPicker({ models, specsOnRequest }: { models: Model[]; specs
       <Inset size="md" aria-live="polite">
         {specsOnRequest ? (
           <p className="text-body text-fg-muted">
-            {model.name} is listed in the CAN range guide. Ask us for its full specifications and availability.
+            {model.name} is listed in the range guide. Ask us for its full specifications and availability.
           </p>
         ) : (
           <DescriptionList items={modelFacts(model)} dividers size="sm" />

@@ -17,10 +17,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "BlueSigns · CAN digital signage displays",
+    default: "BlueSigns · Digital signage displays",
     template: "%s · BlueSigns",
   },
-  description: "Shop CAN digital signage: floor-standing, portable, wall-mounted and desk displays from 10.1″ to 65″, managed with DisplayNode.",
+  description: "Shop digital signage: floor-standing, portable, wall-mounted and desk displays from 10.1″ to 65″, managed with DisplayNode.",
 };
 
 export const viewport: Viewport = {

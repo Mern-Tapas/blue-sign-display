@@ -20,7 +20,7 @@ import {
   signageComparison,
   WARRANTY,
   type Placement,
-} from "@/lib/data/can-products";
+} from "@/lib/data/displays";
 
 /** Photo and grid footprint for each placement tile (floor leads, then portable, wall, desk). */
 const placementTiles: Record<Placement, { image: string; span: string }> = {
@@ -34,10 +34,10 @@ const valueProps = [
   { icon: <Fullscreen aria-hidden />, title: "10.1″ to 65″", text: "HD, Full HD and 4K Ultra HD panels" },
   { icon: <ShieldCheck aria-hidden />, title: "IPS + toughened glass", text: "A+ grade panels, 178° viewing" },
   { icon: <Smartphone aria-hidden />, title: `Run it from ${DISPLAYNODE_NAME}`, text: "Schedule content remotely" },
-  { icon: <BadgeCheck aria-hidden />, title: WARRANTY, text: "On every CAN display" },
+  { icon: <BadgeCheck aria-hidden />, title: WARRANTY, text: "On every display" },
 ];
 
-const featured = ["canvue", "can", "canmount", "canlit", "canwalk", "candesk-touch"]
+const featured = ["vue", "easel", "mount", "lit", "walk", "desk-touch"]
   .map((slug) => series.find((s) => s.slug === slug)!)
   .filter(Boolean);
 
@@ -48,7 +48,7 @@ export default function HomePage() {
         <HomeHero />
 
         <ul
-          aria-label="Why CAN"
+          aria-label="Why digital signage"
           className="grid gap-x-6 gap-y-5 px-1 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-border-subtle lg:[&>li+li]:pl-6"
         >
           {valueProps.map((v) => (
@@ -64,7 +64,7 @@ export default function HomePage() {
       </div>
 
       <section aria-label="Shop by placement">
-        <SectionHeader title="Which CAN is" muted="right for you?" description="Different styles, for different spaces." href="/products" linkLabel="All displays" />
+        <SectionHeader title="Which display is" muted="right for you?" description="Different styles, for different spaces." href="/products" linkLabel="All displays" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[repeat(2,minmax(0,17rem))]">
           {placements.map((p, i) => {
             const count = series.filter((s) => s.placement === p.value).length;
@@ -154,7 +154,7 @@ export default function HomePage() {
         <div className="grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
           <div className="flex flex-col gap-4 lg:sticky lg:top-28">
             <h2 id="why-title" className="text-heading-lg sm:text-display-lg">
-              Why <span className="text-fg-muted">CAN?</span>
+              Why <span className="text-fg-muted">digital?</span>
             </h2>
             <p className="text-body-lg text-fg-muted">
               Digital signage beats traditional signage on exposure. Update your message quickly and remotely, so it is always
@@ -163,7 +163,7 @@ export default function HomePage() {
             <Card variant="accent" padding="md" className="gap-2">
               <p className="text-title">Better customer experiences</p>
               <p className="text-body text-fg-on-accent-muted">
-                That&apos;s the conclusion of the comparison: CAN digital signage offers better customer experiences.
+                That&apos;s the conclusion of the comparison: digital signage offers better customer experiences.
               </p>
             </Card>
           </div>
@@ -222,7 +222,7 @@ export default function HomePage() {
 
       <section aria-labelledby="cta-title" className="flex flex-col items-center gap-4 py-4 text-center">
         <h2 id="cta-title" className="max-w-2xl text-heading-lg sm:text-display-lg">
-          Tell us about your space. <span className="text-fg-muted">We&apos;ll match the right CAN.</span>
+          Tell us about your space. <span className="text-fg-muted">We&apos;ll match the right display.</span>
         </h2>
         <p className="max-w-xl text-body-lg text-fg-muted">
           Share the size, placement and quantity you need, and we&apos;ll come back with pricing and availability.

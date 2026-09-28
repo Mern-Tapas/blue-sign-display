@@ -75,3 +75,33 @@
   - `Emulation.setDeviceMetricsOverride` → a real viewport, not an iframe
   - `maxTouchPoints: 0` is rejected ("must be between 1 and 16"); pass `enabled: false` instead.
   This is what session 1 could not do through the in-browser tooling.
+
+## Measuring contrast against a photograph, and scrim geometry (2026-09-28)
+- **A scrim whose stops are percentages of the card cannot protect a copy column measured in
+  pixels.** The home hero's copy is `p-14` + `max-w-xs` — a fixed px width — while its scrim was
+  `linear-gradient(to right, … 38%, … 50%)`. On a 1272px card the 38% stop sits at 483px and the copy
+  ends at 376px, so it is covered; on a 976px card (a 1024 viewport) 38% is 371px and the
+  sub-paragraph runs *past* the dark part, measuring **2.90:1**. The same bug in the vertical `sm:`
+  band left the headline at **2.93:1** on a 720px card. Both were invisible to every check the project
+  had, because `plan/scripts/contrast.mjs` only knows about token pairs, not about text on a photo.
+  The fix is to size the scrim in px and anchor it to the copy block
+  (`radial-gradient(470px 300px at 110px 44%, …)`), which then scales *with the text* instead of with
+  the card — and, as a bonus, stops washing the half of the photo that has no text over it.
+- **Sample the composited pixels; do not reason about the gradient.** No image decoder is needed and
+  no dependency has to be added: `Page.captureScreenshot` with a `clip` of the element, then feed the
+  base64 straight back into the page as a `data:` URL, `drawImage` it to a `<canvas>` and read
+  `getImageData`. Set the copy column to `visibility: hidden` for the background pass and
+  `display: none` on the scrim for a raw-photo pass, and you can measure the scrim's cost in product
+  brightness and its benefit in contrast from the same screenshot. Compute the ratio properly
+  (sRGB-linearise, then `(L+0.05)` ratio) over the **worst pixel in the text's ink box** — a mean
+  hides exactly the bright screen edge that breaks legibility.
+- **Check where the photo's crop axis flips.** `object-cover` pans only along the axis that overflows.
+  `hero-range.webp` is 1376×768 (1.79); the hero card is 2.09 at desktop and 1.61 at 1024, so
+  `object-position`'s X component does nothing above a ~1090px card and its Y component does nothing
+  below one. Before proposing an `object-position` tweak, work out which half of the value is even live
+  at the width in question.
+- **`initial` must never branch on `useReducedMotion()`.** The server renders before the preference is
+  known, so `initial={reduce ? false : {…}}` puts a different `style` attribute in the SSR HTML than
+  the client produces and React logs a hydration mismatch on every reduced-motion load. Branch the
+  `transition` instead and let the `motion-reduce:filter-none!/transform-none!` guard flatten the
+  start values — same behaviour, no mismatch.

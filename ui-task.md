@@ -43,9 +43,11 @@ What is already good and should not be "fixed":
 | UI-07 | `app/layout.tsx` metadata | `metadata` has no `metadataBase`. | Next 16 logs `⚠ metadataBase property in metadata export is not set…` and resolves OG images against `http://localhost:3001`. `/catalogue/[slug]` sets `openGraph.images`, so every shared catalogue link gets a localhost image URL in production. | Set `metadataBase` from the canonical site origin. | Medium | Business input on the production origin (see BLOCK-03) | ⊘ | Console must be free of the warning; `<meta property="og:image">` must be absolute |
 | UI-08 | `/products` inset, `/catalogue/[slug]` summary card | Links rendered as literal glyphs: `Ask about these models →` and `All {n} specifications ↓`. (The footer's `↗` was the third case; it was replaced with a lucide `ArrowUpRight` as part of UI-03.) | Everywhere else the site uses lucide icons (`ArrowRight`, `ArrowUpRight`) with `aria-hidden` and a hover translate. Literal arrows are read aloud by screen readers, don't inherit the icon stroke/size scale, and don't animate with the rest. Both remaining links are also 18px-tall targets. | Replace with `ArrowRight` / `ArrowDown` lucide icons on the standard `size-icon-sm` scale, inside an `inline-flex` with `hit-area`. | Medium | — | ☑ | Both links at 360/390/768/1024/1280: text content now "Ask about these models" / "All 36 specifications" with **no** arrow glyph anywhere in the page text, 1 `aria-hidden="true"` svg at 14×14 (`size-icon-sm`), box 167×36 and 143×36, `::after` 44px tall on coarse and `none` on fine. Keyboard: both take a 2px `focus-ring` under `:focus-visible`; Enter on the spec link sets `#specifications` and lands the section at 112px (below the sticky header, `scroll-mt-28` honoured) |
 | UI-09 | Home category tiles (`app/(store)/page.tsx`) | Tile markup **already handled by the main session** — `object-cover` edge-to-edge (all 16 sources are 800×800 against an `aspect-square` tile, so nothing is cropped), and the title is `line-clamp-2` on a reserved two-line box so the "N products" line shares a baseline across the row. Do not modify or revert that `<Link>` block. | **The image set is two visual families.** 7 tiles are neutral studio renders on a soft grey backdrop with no text. 5 (`computer-desktop`, `laptops-1`, `used-minipc`, `refurbished`, `used-workstation`) are blue marketing banners with headline typography baked into the artwork ("REFURBISHED DESKTOP", "Reliable · Tested · Ready to Use"). The row reads as half product catalogue, half ad creative. This is an asset problem, not a layout one — the main session confirmed the banners cannot be cropped clean because their internal layouts differ. | New grey-backdrop studio renders for those 5 categories, matching the other 7. | Medium | BLOCK-02 (assets) | ⊘ | Side-by-side of all 12 tiles at 390 (2-up), 768 (3-up) and 1280 (6-up) |
-| UI-10 | `components/store/home-hero.tsx` | Sub-headline uses `text-white/80`; the section uses raw literals `bg-[#240c13]` and `rgb(26 7 13 / …)` gradients. | DESIGN.md: "Don't fade text with opacity" (The Muted-Not-Faded Rule), and raw hex is a defect unless recorded as a documented exception. The colours are sampled from the hero photograph, so they are defensible — but they are undocumented. | Either promote the hero's photo-derived maroon to a token, or record it in DESIGN.md's "Documented exceptions" and swap `text-white/80` for a solid on-photo ink token. | Low | — | ☐ | Contrast of the sub-headline against the scrim at 360 and 1280; `plan/scripts/contrast.mjs` |
+| UI-10 | `components/store/home-hero.tsx` | Sub-headline uses `text-white/80`; the section uses raw literals `bg-[#240c13]` and `rgb(26 7 13 / …)` gradients. | DESIGN.md: "Don't fade text with opacity" (The Muted-Not-Faded Rule), and raw hex is a defect unless recorded as a documented exception. The colours are sampled from the hero photograph, so they are defensible — but they are undocumented. | Either promote the hero's photo-derived maroon to a token, or record it in DESIGN.md's "Documented exceptions" and swap `text-white/80` for a solid on-photo ink token. | Low | — | ☐ | Contrast of the sub-headline against the scrim at 360 and 1280; `plan/scripts/contrast.mjs`. **Re-measured in session 3 after UI-14 lightened the scrim: worst case across 360–1920 is 6.77:1 at `/80` (9.46:1 if it were solid), so this is a design-system rule violation, not a contrast failure.** Stays open; the raw-literal half of it now covers three gradients rather than two. |
 | UI-11 | `app/(store)/catalogue/[slug]/page.tsx` | When `p.images.length === 0` the gallery slot renders `<div className="aspect-square rounded-2xl bg-surface-sunken" />`. | A bare grey box with no label reads as a broken image. Currently unreachable (all 110 products have at least one image) but it is a latent placeholder screen. | Replace with the existing `EmptyState` (or a captioned placeholder) so the slot explains itself. | Low | — | ☐ | Temporarily stub a product with `images: []` and check at 390 and 1280 |
 | UI-12 | `/catalogue/[slug]` videos | `<video controls preload="metadata">` with no `poster` and no `<track>`. | The player is a black rectangle until metadata arrives, and there are no captions. 51 of 110 products carry video. | Add a `poster` from the product's first image, and record the captions gap. | Low | Captions are a content gap (BLOCK-04) | ☐ | `/catalogue/15-6inch-touchscreen-monitor` at 390 and 1280, throttled network |
+| UI-14 | Home hero (`components/store/home-hero.tsx`) | Full-bleed room photo with the copy overlaid from `sm:` up. Scrim was a full-width gradient in **percentages**: `sm:` a bottom-up band, `lg:` a left-to-right band. | **Two defects in one.** (a) *Collision / crushed product.* At 1440 the old `lg` band was 0.94→0.82 across the left 24% on a 100deg diagonal; the three left standees (raw p90 luminance 87/126/122) came out at 23/34/58 — 26% of their real brightness, i.e. black mush — while the headline (`clamp(2.5rem,6vw,4.75rem)`, ink to 37% of the card) ran straight across them. (b) *The percentage scrim does not track the copy.* The copy column is px-bounded (56/40px inset + `max-w-xs`/`max-w-sm`), so as the card narrows the band under-covers it: measured worst-case **2.90:1 on the sub-paragraph at 1024** and **2.93:1 on the headline at 768** — both below WCAG AA — while simultaneously over-washing photo that carries no text. | Keep full-bleed and the word-by-word reveal (user's call). Size the scrim in **pixels** and anchor it to the copy block, not the card: an ellipse bottom-left from `sm`, centre-left from `lg`. Restore the pre-`lg` headline size (the shrink was only needed where the collision is). | **High** | — | ☑ | CDP pixel measurement of the composited hero (screenshot → canvas → sRGB-linear WCAG ratio) at 360/390/640/768/900/1023/1024/1152/1280/1440/1920: headline worst-case ≥ **7.56:1**, sub-paragraph at `/80` ≥ **6.77:1**, at solid white ≥ 9.46:1. Standee brightness recovered 23/34/58 → 61/91/107 at 1440 (70–89% of raw). Headline ink clears the next lit screen by 101px at 1440 / 86px at 1280. No horizontal overflow, console clean, both themes. |
+| UI-15 | Home hero reveal (`components/store/home-hero.tsx`) | `initial` was branched on `useReducedMotion()` (`initial={reduce ? false : {…}}` and a ternary returning two different `initial` objects). | **Hydration mismatch.** The server renders before the motion preference is known, so under `prefers-reduced-motion: reduce` the SSR `style` attribute (blur + translate) disagreed with the client's (`initial: {opacity: 0}` / `false`). React logged *"A tree hydrated but some attributes of the server rendered HTML didn't match"* on every reduced-motion load of `/`. | Branch only the `transition`. `initial`/`animate` are identical in both cases and the existing `NO_MOTION` (`motion-reduce:filter-none!/transform-none!`) already strips the blur and offset, so behaviour is unchanged. | Medium | — | ☑ | CDP with `Emulation.setEmulatedMedia` → `prefers-reduced-motion: reduce`: console now carries only motion.dev's own "Reduced Motion enabled" notice, no React error. Behaviour re-verified: under `reduce` photo/first word/last word/paragraph/actions all compute `filter: none`, `transform: none` throughout and settle at `opacity: 1`; under `no-preference` the same five are caught mid-reveal at `blur(24px)`/`blur(12px)`/`blur(8px)` with `translateY 19.6px`/`10px`. |
 | UI-13 | `components/store/quote-form.tsx` | Client-side validation and a local confirmation card; no submission target. | The confirmation says "Our team will reach you at …" but nothing is sent. | Wire `onSubmit` to a real endpoint, then make the confirmation honest about what happened. | High | BLOCK-01 | ⊘ | Submit end-to-end and confirm receipt |
 
 ---
@@ -99,7 +101,7 @@ the `design-system/` and `.design-sync/` build plumbing.
 | BLOCK-02 | UI-09 | **5 category images are off-system and cannot be fixed in code.** `public/catalogue/categories/computer-desktop.webp`, `laptops-1.webp`, `used-minipc.webp`, `refurbished.webp`, `used-workstation.webp` are blue marketing banners with baked-in headline typography; the other 7 visible tiles are neutral grey-backdrop product renders. The main session tested cropping the text out and it fails — the banners have inconsistent internal layouts. Needed: 5 replacement 800×800 grey-backdrop studio renders in the same language as the new 7, or an explicit decision to accept the mixed look. | Brand / business |
 | BLOCK-03 | UI-07 | **Canonical production origin is unknown.** `lib/data/can-products.ts` exposes `SITE_URL = cansignage.com`, which is the *manufacturer's* site (linked as an external destination in the header and footer), not necessarily where BlueSigns is deployed. `metadataBase` must point at the BlueSigns deployment. | Business |
 | BLOCK-04 | UI-12 | **No captions or transcripts** exist for the 51 catalogue product videos. Needed: caption files, or an explicit decision that these are silent/demonstrative clips. | Content |
-| BLOCK-05 | Product naming, site-wide | **Open question: should "CAN" be stripped from product naming?** The CAN prefix is currently load-bearing — it appears in `series[].name` (`CANVue`, `CANWalk`, `CANMount`…), in model names (`CANDesk Wid 1001`), in headings ("Which CAN is right for you?", "Why CAN?"), in nav copy, in `WARRANTY` ("1 year warranty on every CAN display"), and in `lib/data/catalogue/index.ts` where `brand: "CAN"` drives the catalogue card badge and the `/products/<slug>` cross-link. Removing it is a data-layer change, not a UI change, and would leave the series without a distinguishing name. Needed: a decision on whether BlueSigns sells *CAN* displays under the manufacturer's name or rebrands them. | Brand / business |
+| ~~BLOCK-05~~ | — | **Resolved 2026-09-28.** "CAN" dropped from all product naming. Series renamed Lit / Walk / Mount / Easel / Vue / NX / Desk (+ Touch, Tab, Wid); slugs follow, with permanent redirects from the old ones in `next.config.ts`. `lib/data/can-products.ts` → `lib/data/displays.ts`. The catalogue badge is now `brand: "BlueSigns"`. The footer keeps "Displays by CAN Signage Display Pvt Ltd" — that is the manufacturer's registered company name, not product naming. | Done |
 
 ---
 
@@ -167,3 +169,62 @@ the `design-system/` and `.design-sync/` build plumbing.
   in light and dark.
 
   Not done, and not claimed: UI-07 stays `⊘` — BLOCK-03 is unresolved and no origin was guessed.
+
+- **2026-09-28 · session 3** — Home hero only: implemented UI-14 and UI-15. Baseline was the main
+  session's uncommitted tree (post-"CAN" rename, `lib/data/displays.ts`), plus session 2's uncommitted
+  work. Nothing was committed or reverted.
+
+  Files touched: `components/store/home-hero.tsx`, this file. No data file, no `next.config.ts`,
+  no token file, no other component.
+
+  **What was measured, and how.** The in-browser tooling cannot sample composited pixels, so the route
+  was again a headless Chrome over CDP driven from Node 24's built-in `WebSocket` (the session-2 recipe
+  in `.design-sync/NOTES.md`), with one addition worth keeping: `Page.captureScreenshot` of the hero's
+  clip rect, fed **back into the page** as a `data:` URL, drawn to a `<canvas>` and read with
+  `getImageData`. That gives real per-pixel access to the *composited* hero (photo + scrim, with the
+  copy column set to `visibility: hidden` so only the background is sampled) with no image decoder and
+  no dependency added. Contrast is then computed properly — sRGB-linearised luminance, worst pixel in
+  the text's ink box, not an average and not an eyeball.
+
+  Numbers that drove the change, at a 1272px card:
+  - The photo's natural size is **1376×768**. Against a 1272×608 card the overflow is **vertical only**
+    (102px), so `object-position`'s X component is inert above a 1090px card and the Y knob has 102px of
+    authority in total. `object-[center_70%]` was left alone: there is no pan that moves the standees
+    out from under a left-hand copy column.
+  - Raw (unscrimmed) p90 luminance of the three left standees: **87 / 126 / 122**. Under the old
+    `lg` scrim: **23 / 34 / 58**. That is the "black mush" — 26/27/48% of the real brightness.
+  - The old scrim was also **failing WCAG AA in two places nobody had measured**: the sub-paragraph at
+    **2.90:1** on a 976px card (1024 viewport) and the headline at **2.93:1** on a 720px card (768
+    viewport). Root cause was the same in both: the scrim's stops are percentages of the *card*, the
+    copy column is a fixed pixel width, so the band under-covers the copy exactly as the card narrows.
+
+  The fix is one idea applied twice: **size the scrim in pixels and anchor it to the copy, not the
+  card.** `sm:` gets a 680×560px ellipse at the bottom-left corner (where the copy is bottom-aligned),
+  `lg:` a 470×300px ellipse at 110px / 44% (where the copy is centred). Result across
+  360/390/640/768/900/1023/1024/1152/1280/1440/1920: headline worst case **≥ 7.56:1**, sub-paragraph
+  **≥ 6.77:1** at its current `text-white/80` (≥ 9.46:1 if it were solid). Standees recover to
+  **61 / 91 / 107** at 1440, the floor to 114 (raw 129), and the product cluster and the whole
+  right-hand half of the photo are now **untouched** by the scrim (140 vs a raw 140). At 768 the
+  bottom-right quadrant goes from 59 to 140.
+
+  Of the main session's three unverified edits: the **headline clamp was changed**, the **`lg` scrim
+  was replaced**, and **`lg:max-w-xs` on the sub-paragraph was kept**. The clamp
+  `clamp(2.25rem,4.4vw,3.5rem)` was correct at `lg` but applied everywhere, which cut the headline from
+  46px to 36px at 768 and from 40px to 36px at 360/390 — breakpoints that have no collision to solve,
+  and 36px at 768 measured 3.38:1 (barely passing) where 46px measures 8.62:1 under the new scrim. It
+  is now `clamp(2.5rem,6vw,3rem)` with the main session's value kept as a `lg:` override.
+
+  Verification actually run: `npx tsc --noEmit` clean; `npm run lint` 0 errors (the same 20
+  pre-existing warnings in `design-system/shims/**`, untouched); `npx next build` passes;
+  `node plan/scripts/contrast.mjs` 0 failing pairs in both themes; `/` at 360/390/768/1024/1280/1440/
+  1920 × light and dark — `scrollWidth === clientWidth` at all fourteen, console clean at all fourteen
+  (the 37 elements overhanging the viewport at 360/390 are all inside the spec table's deliberate
+  `overflow-x-auto` scroller, nothing in the hero); screenshots taken and inspected at every one;
+  keyboard walked with real `Input.dispatchKeyEvent` Tab — both hero CTAs are stops 12 and 13 in a
+  correct order, 2px `focus-ring` at 2px offset, boxes 196×48 and 135×48; reduced motion emulated for
+  real and both the reveal and its suppression re-confirmed (see UI-15).
+
+  Not done, and not claimed: the hero's **raw colour literals stay raw** (`#240c13` and now three
+  `rgb(26 7 13 / …)` gradients) — that is UI-10's other half and needs a DESIGN.md decision, not a
+  unilateral token. `text-white/80` also stays: it is a rule violation, not a contrast one, and the
+  brief said to leave it tracked if it still passes. It passes at 6.77:1.

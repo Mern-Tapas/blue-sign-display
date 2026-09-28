@@ -5,11 +5,11 @@ import { PlacementFilter } from "@/components/store/placement-filter";
 import { SeriesCard } from "@/components/store/series-card";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Inset } from "@/components/ui/inset";
-import { moreModels, placements, series, type Placement } from "@/lib/data/can-products";
+import { moreModels, placements, series, type Placement } from "@/lib/data/displays";
 
 export const metadata: Metadata = {
   title: "Digital signage displays",
-  description: "Every CAN display: floor-standing, portable, wall-mounted and desk signage from 10.1″ to 65″.",
+  description: "Every display: floor-standing, portable, wall-mounted and desk signage from 10.1″ to 65″.",
 };
 
 function parsePlacement(value: string | string[] | undefined): Placement | null {
@@ -30,7 +30,7 @@ export default async function ProductsPage({ searchParams }: PageProps<"/product
         <div className="flex flex-col gap-2">
           <h1 className="text-display-lg">
             {current ? current.label : "All displays"}
-            <span className="text-fg-muted"> by CAN</span>
+            
           </h1>
           <p className="max-w-2xl text-body-lg text-fg-muted">
             {current

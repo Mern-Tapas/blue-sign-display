@@ -34,7 +34,7 @@ import {
   SITE_URL,
   WARRANTY,
   type Placement,
-} from "@/lib/data/can-products";
+} from "@/lib/data/displays";
 
 /** `external` links leave the store and open in a new tab. */
 const links: { href: string; label: string; external?: boolean }[] = [
@@ -54,7 +54,7 @@ const placementIcon: Record<Placement, React.ReactNode> = {
   desk: <Tablet aria-hidden />,
 };
 
-const spotlight = ["canvue", "can", "canmount", "candesk-touch"].map((slug) => series.find((s) => s.slug === slug)!);
+const spotlight = ["vue", "easel", "mount", "desk-touch"].map((slug) => series.find((s) => s.slug === slug)!);
 
 function isActive(pathname: string, href: string) {
   if (href.includes("#")) return false;
@@ -85,7 +85,7 @@ function UtilityStrip() {
         <p className="flex items-center gap-4">
           <span className="inline-flex items-center gap-1.5">
             <BadgeCheck aria-hidden className="size-icon-sm text-fg-on-contrast" />
-            {WARRANTY} on every CAN display
+            {WARRANTY} on every display
           </span>
           <a
             href={DISPLAYNODE_URL}
@@ -190,7 +190,7 @@ function MobileMenu({ pathname }: { pathname: string }) {
         </IconButton>
       </SheetTrigger>
       <SheetContent side="left">
-        <SheetHeader title={<BrandMark />} description="CAN digital signage, 10.1″ to 65″" />
+        <SheetHeader title={<BrandMark />} description="Digital signage, 10.1″ to 65″" />
         <SheetBody className="flex flex-col gap-2 pb-4">
           <Accordion type="single" collapsible defaultValue="displays">
             <AccordionItem value="displays">

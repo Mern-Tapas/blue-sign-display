@@ -18,6 +18,24 @@ const nextConfig: NextConfig = {
       { source: "/design-system/filters", destination: "/design-system/listing", permanent: true },
       // The IQ World page was replaced by DisplayNode; old links go straight to its site.
       { source: "/iq-world", destination: "https://displaynode.cloud/", permanent: false },
+      // The CAN prefix was dropped from every series name, so the slugs changed with it.
+      // Longest-first: /products/candesk-touch must not be caught by /products/candesk.
+      ...Object.entries({
+        "candesk-touch": "desk-touch",
+        "candesk-tab": "desk-tab",
+        "candesk-wid": "desk-wid",
+        candesk: "desk",
+        canlit: "lit",
+        canwalk: "walk",
+        canmount: "mount",
+        canvue: "vue",
+        cannx: "nx",
+        can: "easel",
+      }).map(([from, to]) => ({
+        source: `/products/${from}`,
+        destination: `/products/${to}`,
+        permanent: true,
+      })),
     ];
   },
 };

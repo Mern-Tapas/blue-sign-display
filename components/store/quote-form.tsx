@@ -9,7 +9,7 @@ import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Select, type SelectGroup } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { placements, series } from "@/lib/data/can-products";
+import { placements, series } from "@/lib/data/displays";
 
 const modelGroups: SelectGroup[] = placements.map((p) => ({
   label: p.label,
@@ -33,7 +33,7 @@ function validate(v: Values): Errors {
 }
 
 /**
- * Quote request for a CAN display.
+ * Quote request for a display.
  * TODO: this form has no backend yet. Connect `onSubmit` to an API route or CRM before launch;
  * until then the confirmation only reflects what was entered on this page.
  */

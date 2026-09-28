@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { ChipGroup } from "@/components/ui/chip";
-import { placements, series, type Placement } from "@/lib/data/can-products";
+import { placements, series, type Placement } from "@/lib/data/displays";
 
 const ALL = "all";
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import type { ProductImage } from "@/lib/data/can-products";
+import type { ProductImage } from "@/lib/data/displays";
 
 /** Main photo plus a thumbnail row (only when the series has more than one photo). */
 export function SeriesGallery({ images, name }: { images: ProductImage[]; name: string }) {

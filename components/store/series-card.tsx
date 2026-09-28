@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/cn";
-import { placementLabel, sizeRange, type Series } from "@/lib/data/can-products";
+import { placementLabel, sizeRange, type Series } from "@/lib/data/displays";
 
 export type SeriesCardProps = {
   series: Series;
@@ -13,7 +13,7 @@ export type SeriesCardProps = {
 };
 
 /**
- * One CAN series. The photo sits on a lit white stage (the product shots are shot on white), the
+ * One display series. The photo sits on a lit white stage (the product shots are shot on white), the
  * name and size range read as one line, and the facts follow as a single quiet run of text.
  * The whole card is the link; hover lifts it and eases the photo forward.
  */

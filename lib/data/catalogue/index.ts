@@ -5,7 +5,8 @@
  * Never edit the JSON files by hand.
  * Server-only: the JSON is ~400 KB, so pass individual products to client components as props.
  */
-import { series, sizeRange } from "@/lib/data/can-products";
+import { series, sizeRange } from "@/lib/data/displays";
+import { categoryNames, productNames } from "./names";
 import data from "./catalogue.json";
 import mediaMap from "./media.json";
 
@@ -48,9 +49,9 @@ export type CatalogueProduct = {
   brochure: string | null;
   sortOrder: number;
   updatedAt: string;
-  /** Set for CAN series listed in the catalogue: their detail page lives under /products. */
+  /** Set for the in-house series listed in the catalogue: their detail page lives under /products. */
   href?: string;
-  brand?: "CAN";
+  brand?: "BlueSigns";
 };
 
 export const catalogueSource = data.source;
@@ -59,32 +60,33 @@ export const catalogueImportedAt = data.importedAt;
 /** Products imported from dcat.shop (each has its own /catalogue/<slug> page). */
 export const catalogueProducts = (data.products as CatalogueProduct[]).map((p) => ({
   ...p,
+  title: productNames[p.slug] ?? p.title,
   images: p.images.map((u) => local(u)),
   videos: p.videos.map((u) => local(u)),
   brochure: local(p.brochure),
 }));
 
-/** Which catalogue category each CAN series is listed under. */
-const CAN_CATEGORY: Record<string, string> = {
-  canlit: "kiosk-standee",
-  can: "kiosk-standee",
-  canvue: "kiosk-standee",
-  canwalk: "kiosk-standee",
-  canmount: "digital-signage-solution",
-  cannx: "digital-signage-solution",
-  candesk: "digital-signage-solution",
-  "candesk-touch": "digital-signage-solution",
-  "candesk-tab": "digital-signage-solution",
-  "candesk-wid": "digital-signage-solution",
+/** Which catalogue category each in-house series is listed under. */
+const SERIES_CATEGORY: Record<string, string> = {
+  lit: "kiosk-standee",
+  easel: "kiosk-standee",
+  vue: "kiosk-standee",
+  walk: "kiosk-standee",
+  mount: "digital-signage-solution",
+  nx: "digital-signage-solution",
+  desk: "digital-signage-solution",
+  "desk-touch": "digital-signage-solution",
+  "desk-tab": "digital-signage-solution",
+  "desk-wid": "digital-signage-solution",
 };
 
-/** CAN series shown as catalogue cards; they link to their existing /products/<slug> page. */
-const canEntries: CatalogueProduct[] = series.map((s, i) => ({
-  slug: `can-${s.slug}`,
+/** In-house series shown as catalogue cards; they link to their existing /products/<slug> page. */
+const seriesEntries: CatalogueProduct[] = series.map((s, i) => ({
+  slug: `series-${s.slug}`,
   name: `${s.name} · ${s.headline}`,
   title: `${s.name} · ${s.headline.replace(/\.$/, "")}`,
   highlights: s.highlights,
-  category: CAN_CATEGORY[s.slug] ?? null,
+  category: SERIES_CATEGORY[s.slug] ?? null,
   description: `${s.summary} Models: ${s.models.map((m) => m.name).join(", ")}. ${sizeRange(s)}.`,
   specs: [],
   terms: [],
@@ -94,15 +96,16 @@ const canEntries: CatalogueProduct[] = series.map((s, i) => ({
   sortOrder: -1000 + i,
   updatedAt: "",
   href: `/products/${s.slug}`,
-  brand: "CAN",
+  brand: "BlueSigns",
 }));
 
-/** Everything listed on /catalogue: CAN series first, then the imported products. */
-export const catalogueEntries: CatalogueProduct[] = [...canEntries, ...catalogueProducts];
+/** Everything listed on /catalogue: in-house series first, then the imported products. */
+export const catalogueEntries: CatalogueProduct[] = [...seriesEntries, ...catalogueProducts];
 
 export const catalogueCategories = (data.categories as CatalogueCategory[])
   .map((c) => ({
     ...c,
+    name: categoryNames[c.slug] ?? c.name,
     image: local(c.image),
     productCount: catalogueEntries.filter((p) => p.category === c.slug).length,
   }))

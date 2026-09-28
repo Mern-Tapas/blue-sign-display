@@ -10,7 +10,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Card, CardHeader } from "@/components/ui/card";
 import { DescriptionList } from "@/components/ui/description-list";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { getSeries, placementLabel, placements, series, WARRANTY } from "@/lib/data/can-products";
+import { getSeries, placementLabel, placements, series, WARRANTY } from "@/lib/data/displays";
 
 export const dynamicParams = false;
 

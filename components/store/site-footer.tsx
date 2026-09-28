@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { DISPLAYNODE_NAME, DISPLAYNODE_URL, placements, series, SITE_URL, WARRANTY } from "@/lib/data/can-products";
+import { DISPLAYNODE_NAME, DISPLAYNODE_URL, placements, series, SITE_URL, WARRANTY } from "@/lib/data/displays";
 
 type FooterLink = { label: string; href: string; external?: boolean };
 
@@ -34,7 +34,7 @@ export function SiteFooter() {
           <div className="flex flex-col gap-4">
             <BrandMark inverted />
             <p className="max-w-xs text-body text-fg-on-contrast-muted">
-              CAN digital signage for every space: floor, wall, desk and on the move. Manage every screen with{" "}
+              Digital signage for every space: floor, wall, desk and on the move. Manage every screen with{" "}
               {DISPLAYNODE_NAME}. Every display is backed by a {WARRANTY}.
             </p>
           </div>
@@ -69,7 +69,7 @@ export function SiteFooter() {
         </div>
         <div className="mt-10 flex flex-col gap-3 border-t border-edge-on-color pt-6 text-caption text-fg-on-contrast-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © 2026 BlueSigns. CAN displays by CAN Signage Display Pvt Ltd ·{" "}
+            © 2026 BlueSigns. Displays by CAN Signage Display Pvt Ltd ·{" "}
             {/* Inline in a sentence, so the target grows via hit-area (coarse pointers only,
                 no layout shift) rather than by becoming a block. */}
             <a
