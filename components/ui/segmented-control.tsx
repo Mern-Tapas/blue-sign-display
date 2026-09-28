@@ -19,7 +19,9 @@ const rootVariants = cva("inline-flex items-center rounded-pill", {
 
 const itemVariants = cva(
   [
-    "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-pill font-medium",
+    // hit-area-y, not hit-area: items sit edge to edge, so a 44px-wide ::after would cover the
+    // neighbour's box. Only the height is short of --hit-min (sm is 24px, md 32px, lg 40px).
+    "relative inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-pill font-medium hit-area-y",
     "transition-[background-color,color,box-shadow] duration-(--dur-fast) ease-out disabled:text-disabled-fg [&_svg]:size-icon-md",
   ],
   {

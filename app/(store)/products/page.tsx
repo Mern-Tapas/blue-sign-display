@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { PlacementFilter } from "@/components/store/placement-filter";
 import { SeriesCard } from "@/components/store/series-card";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
@@ -57,8 +58,17 @@ export default async function ProductsPage({ searchParams }: PageProps<"/product
           <p className="text-body">
             Also in the range: <span className="text-body-strong">{moreModels.join(" and ")}</span>.
           </p>
-          <Link href="/contact" className="text-label text-accent-fg hover:underline">
-            Ask about these models →
+          {/* Lucide icon, not a literal "→": a glyph is read aloud, ignores the icon scale and
+              can't animate with the rest. min-h-row-sm carries the target; hit-area tops it up. */}
+          <Link
+            href="/contact"
+            className="group hit-area relative inline-flex min-h-row-sm items-center gap-1.5 self-start text-label text-accent-fg hover:underline sm:self-auto"
+          >
+            Ask about these models
+            <ArrowRight
+              aria-hidden
+              className="size-icon-sm transition-transform duration-(--dur-base) ease-(--ease-out) group-hover:translate-x-0.5"
+            />
           </Link>
         </Inset>
       )}

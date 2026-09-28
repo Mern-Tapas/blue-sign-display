@@ -156,7 +156,10 @@ export default function ButtonsPage() {
         <CopyShareDemo />
       </DsSection>
 
-      <DsSection title="Segmented control" description="Compact single-choice switcher with optional count bubbles — Monthly/Annually, All/Draft/Unpaid.">
+      <DsSection
+        title="Segmented control"
+        description="Compact single-choice switcher with optional count bubbles — Monthly/Annually, All/Draft/Unpaid. Items are 24 / 32 / 40px tall and carry hit-area-y, so on a coarse pointer each one reaches 44px in height without widening over its neighbour."
+      >
         <DsGrid>
           <DsPreview label="Surface (default)">
             <SegmentedControl

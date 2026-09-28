@@ -81,6 +81,20 @@ export default function AccessibilityPage() {
             <p className="max-w-md text-body text-fg-muted">28px icon button, 44px target. Rows use h-row-md (44px) and need no expansion.</p>
           </div>
         </DsSubsection>
+        <DsSubsection title="hit-area-y" description="Height-only sibling of hit-area, for items packed edge to edge in a row. Growing sideways there would push each item's ::after over its neighbour, and the later sibling wins the tap. SegmentedControl items use it: the row has no horizontal dead space, only the height falls short.">
+          <div className="flex items-center gap-6 rounded-2xl bg-surface p-6 shadow-flat">
+            <span className="flex h-11 items-center rounded-pill border border-dashed border-accent">
+              <span className="flex h-6 items-stretch rounded-pill bg-surface-sunken p-1">
+                {["A", "B", "C"].map((l) => (
+                  <span key={l} className="flex w-8 items-center justify-center rounded-pill text-caption text-fg-muted">
+                    {l}
+                  </span>
+                ))}
+              </span>
+            </span>
+            <p className="max-w-md text-body text-fg-muted">24px items, 44px tall target, each still only as wide as its own box.</p>
+          </div>
+        </DsSubsection>
       </DsSection>
 
       <DsSection title="Contrast" description="Measured with plan/scripts/contrast.mjs against the tokens in both themes; a failing pair fails the phase gate.">

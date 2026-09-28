@@ -194,6 +194,24 @@
   }
 }
 
+/* Height-only sibling of hit-area, for items packed edge to edge in a row (segmented control
+   items, dense tab strips). Growing sideways there would push each item's ::after over its
+   neighbour — the later sibling paints on top, so the last item steals the one before it.
+   The row already has no dead space horizontally; only the height falls short of --hit-min. */
+@utility hit-area-y {
+  @media (pointer: coarse) {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      left: 0;
+      height: max(100%, var(--hit-min));
+      transform: translateY(-50%);
+    }
+  }
+}
+
 /* Press feedback — subtle scale on :active. Sets no transition itself: the component's
    own transition list must include `transform` (avoids utilities overriding each other). */
 @utility press {

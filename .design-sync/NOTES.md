@@ -57,3 +57,21 @@
   WCAG 2.5.8 floor (24x24) and far under `--hit-min`. Links that sit on their own row get a row
   token (`min-h-row-sm`); links inline in a sentence get `hit-area relative` instead, which grows the
   target on coarse pointers only and never moves the text.
+
+## Touch targets in a packed row, and verifying media features (2026-09-24)
+- **`hit-area` is the wrong tool for items packed edge to edge.** It sizes `::after` to
+  `max(100%, 44px)` in *both* axes. In a `SegmentedControl` the items touch, so a 44px-wide `::after`
+  on a 28px item hangs 8px over each neighbour — and because the pseudo-elements are siblings in DOM
+  order, the *later* item wins the tap. Measured in the gallery's `size="sm"` preview: items are 39 /
+  32 / 35 / 31 / 38px wide, so `hit-area` would have made the last item steal part of every earlier
+  one. `hit-area-y` (new, `styles/utilities.css`) grows only the height and pins `left:0; right:0`,
+  which is the axis that actually falls short (sm 24px, md 32px, lg 40px).
+- **A media feature can be exercised for real over CDP, no Playwright needed.** Launch the installed
+  Chrome with `--headless=new --remote-debugging-port=9222 --user-data-dir=<temp>`, open a target via
+  `PUT /json/new`, and drive it from Node 24's built-in `WebSocket` (no dependency to install):
+  - `Emulation.setEmulatedMedia` → `prefers-reduced-motion: reduce`, `prefers-color-scheme: dark`
+  - `Emulation.setTouchEmulationEnabled` → makes `(pointer: coarse)` / `(hover: none)` match,
+    so `hit-area`'s `::after` actually materialises (`content: none` on a fine pointer)
+  - `Emulation.setDeviceMetricsOverride` → a real viewport, not an iframe
+  - `maxTouchPoints: 0` is rejected ("must be between 1 and 16"); pass `enabled: false` instead.
+  This is what session 1 could not do through the in-browser tooling.

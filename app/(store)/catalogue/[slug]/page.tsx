@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, FileText } from "lucide-react";
+import { ArrowDown, ArrowUpRight, FileText } from "lucide-react";
 import { SectionHeader } from "@/components/layout/section-header";
 import { CatalogueCard } from "@/components/store/catalogue-card";
 import { SeriesGallery } from "@/components/store/series-gallery";
@@ -95,9 +95,18 @@ export default async function CatalogueProductPage({ params }: PageProps<"/catal
                   dividers
                   items={summary.map((s, i) => ({ key: `${s.label}-${i}`, term: s.label, description: s.value }))}
                 />
+                {/* Lucide icon, not a literal "↓": a glyph is read aloud, ignores the icon
+                    scale and can't animate with the rest. */}
                 {p.specs.length > summary.length && (
-                  <a href="#specifications" className="text-label text-accent-fg hover:underline">
-                    All {p.specs.length} specifications ↓
+                  <a
+                    href="#specifications"
+                    className="group hit-area relative inline-flex min-h-row-sm items-center gap-1.5 self-start text-label text-accent-fg hover:underline"
+                  >
+                    All {p.specs.length} specifications
+                    <ArrowDown
+                      aria-hidden
+                      className="size-icon-sm transition-transform duration-(--dur-base) ease-(--ease-out) group-hover:translate-y-0.5"
+                    />
                   </a>
                 )}
               </Card>
