@@ -66,19 +66,8 @@ export const catalogueProducts = (data.products as CatalogueProduct[]).map((p) =
   brochure: local(p.brochure),
 }));
 
-/** Which catalogue category each in-house series is listed under. */
-const SERIES_CATEGORY: Record<string, string> = {
-  lit: "kiosk-standee",
-  easel: "kiosk-standee",
-  vue: "kiosk-standee",
-  walk: "kiosk-standee",
-  mount: "digital-signage-solution",
-  nx: "digital-signage-solution",
-  desk: "digital-signage-solution",
-  "desk-touch": "digital-signage-solution",
-  "desk-tab": "digital-signage-solution",
-  "desk-wid": "digital-signage-solution",
-};
+/** Every in-house series is digital signage, so they all list under that one category. */
+const SERIES_CATEGORY = "digital-signage-solution";
 
 /** In-house series shown as catalogue cards; they link to their existing /products/<slug> page. */
 const seriesEntries: CatalogueProduct[] = series.map((s, i) => ({
@@ -86,7 +75,7 @@ const seriesEntries: CatalogueProduct[] = series.map((s, i) => ({
   name: `${s.name} · ${s.headline}`,
   title: `${s.name} · ${s.headline.replace(/\.$/, "")}`,
   highlights: s.highlights,
-  category: SERIES_CATEGORY[s.slug] ?? null,
+  category: SERIES_CATEGORY,
   description: `${s.summary} Models: ${s.models.map((m) => m.name).join(", ")}. ${sizeRange(s)}.`,
   specs: [],
   terms: [],

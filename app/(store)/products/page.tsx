@@ -24,7 +24,7 @@ export default async function ProductsPage({ searchParams }: PageProps<"/product
   const modelCount = results.reduce((n, s) => n + s.models.length, 0);
 
   return (
-    <div className="container-ds flex flex-col gap-8">
+    <div className="container-ds flex flex-col gap-8 pt-8">
       <div className="flex flex-col gap-4">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Displays", href: current ? "/products" : undefined }, ...(current ? [{ label: current.label }] : [])]} />
         <div className="flex flex-col gap-2">

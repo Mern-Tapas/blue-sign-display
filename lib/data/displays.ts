@@ -1,6 +1,6 @@
 /**
- * Digital signage catalogue. Every figure comes from the manufacturer's product brochure
- * (www.cansignage.com). Nothing here is priced: the store sells on enquiry.
+ * Digital signage catalogue. Every figure comes from the manufacturer's product brochure.
+ * Nothing here is priced: the store sells on enquiry.
  */
 
 export type Placement = "floor" | "portable" | "wall" | "desk";
@@ -58,7 +58,6 @@ export const placements: { value: Placement; label: string; description: string 
 ];
 
 export const WARRANTY = "1 year warranty";
-export const SITE_URL = "www.cansignage.com";
 
 const img = (file: string, alt: string, width = 1400, height = 1400): ProductImage => ({
   src: `/products/can/${file}.webp`,
@@ -120,18 +119,18 @@ function signageSpecs(aspect: string, hardware: SpecRow[] = []): SpecGroup[] {
 
 export const series: Series[] = [
   {
-    slug: "lit",
-    name: "Lit",
+    slug: "lollipop-standee",
+    name: "Lollipop Standee",
     eyebrow: "Best and brightest.",
     headline: "Show your best.",
     summary:
       "A slim portrait display on a round pedestal base: a brilliant IPS panel behind full toughened glass, ready for entrances, showrooms and lobbies.",
     placement: "floor",
     orientation: "portrait",
-    images: [img("canlit-finishes", "Lit pedestal displays in white, black and silver finishes")],
+    images: [img("canlit-finishes", "Lollipop Standee pedestal displays in white, black and silver finishes")],
     models: [
-      { name: "Lit 3201", size: 32, pixels: "768 × 1366", brightness: 300, dimensions: "18.01 × 69.13 × 2.35 in, 15″ base radius", netWeight: "19.5 kg", grossWeight: "24 kg" },
-      { name: "Lit Pro 4301", size: 43, pixels: "1080 × 1920", brightness: 380, dimensions: "22.06 × 76.01 × 2.65 in, 15″ base radius", netWeight: "27.9 kg", grossWeight: "32.5 kg" },
+      { name: "Lollipop Standee 3201", size: 32, pixels: "768 × 1366", brightness: 300, dimensions: "18.01 × 69.13 × 2.35 in, 15″ base radius", netWeight: "19.5 kg", grossWeight: "24 kg" },
+      { name: "Lollipop Standee Pro 4301", size: 43, pixels: "1080 × 1920", brightness: 380, dimensions: "22.06 × 76.01 × 2.65 in, 15″ base radius", netWeight: "27.9 kg", grossWeight: "32.5 kg" },
     ],
     resolutions: ["HD", "Full HD"],
     apps: ALL_APPS,
@@ -159,20 +158,20 @@ export const series: Series[] = [
     highlights: ["Wearable backpack", "Up to 5 hr battery", "32″ HD"],
   },
   {
-    slug: "mount",
-    name: "Mount",
+    slug: "wall-mount",
+    name: "Wall Mount",
     eyebrow: "Best and brightest.",
     headline: "True-to-life display.",
     summary:
       "Wall-mounted portrait displays from 32″ to 55″, with 4K Ultra HD on the 50″ and 55″ models. Built for menu boards, corridors and retail walls.",
     placement: "wall",
     orientation: "portrait",
-    images: [img("canmount-finishes", "Mount wall displays in white, silver and black finishes")],
+    images: [img("canmount-finishes", "Wall Mount displays in white, silver and black finishes")],
     models: [
-      { name: "Mount 3201", size: 32, pixels: "768 × 1366", brightness: 300, dimensions: "18.01 × 36.14 × 2.35 in", netWeight: "10.4 kg", grossWeight: "13.5 kg" },
-      { name: "Mount Pro 4301", size: 43, pixels: "1080 × 1920", brightness: 350, dimensions: "22.06 × 48.16 × 2.65 in", netWeight: "16.9 kg", grossWeight: "20 kg" },
-      { name: "Mount Pro+ 5001", size: 50, pixels: "2160 × 3840", brightness: 380, dimensions: "26 × 50 × 3 in", netWeight: "21 kg", grossWeight: "26 kg" },
-      { name: "Mount Max 5501", size: 55, pixels: "2160 × 3840", brightness: 380, dimensions: "28 × 55 × 3.3 in", netWeight: "25 kg", grossWeight: "29 kg" },
+      { name: "Wall Mount 3201", size: 32, pixels: "768 × 1366", brightness: 300, dimensions: "18.01 × 36.14 × 2.35 in", netWeight: "10.4 kg", grossWeight: "13.5 kg" },
+      { name: "Wall Mount Pro 4301", size: 43, pixels: "1080 × 1920", brightness: 350, dimensions: "22.06 × 48.16 × 2.65 in", netWeight: "16.9 kg", grossWeight: "20 kg" },
+      { name: "Wall Mount Pro+ 5001", size: 50, pixels: "2160 × 3840", brightness: 380, dimensions: "26 × 50 × 3 in", netWeight: "21 kg", grossWeight: "26 kg" },
+      { name: "Wall Mount Max 5501", size: 55, pixels: "2160 × 3840", brightness: 380, dimensions: "28 × 55 × 3.3 in", netWeight: "25 kg", grossWeight: "29 kg" },
     ],
     resolutions: ["HD", "Full HD", "4K Ultra HD"],
     apps: ALL_APPS,
@@ -207,8 +206,8 @@ export const series: Series[] = [
     highlights: ["A-frame easel", "Easy to move", "32″ & 43″"],
   },
   {
-    slug: "vue",
-    name: "Vue",
+    slug: "totem",
+    name: "Totem",
     eyebrow: "Experience the best.",
     headline: "The ultimate experience.",
     summary:
@@ -216,18 +215,18 @@ export const series: Series[] = [
     placement: "floor",
     orientation: "portrait",
     images: [
-      img("canvue-finishes", "Vue totems in white, black and silver finishes"),
-      img("canvue-front", "Vue totem, front view", 1120, 1400),
-      img("canvue-angle-left", "Vue totem on wheels, angled view", 1120, 1400),
-      img("canvue-angle-right", "Vue totem on wheels, angled from the other side", 1120, 1400),
+      img("canvue-finishes", "Totem displays in white, black and silver finishes"),
+      img("canvue-front", "Totem, front view", 1120, 1400),
+      img("canvue-angle-left", "Totem on wheels, angled view", 1120, 1400),
+      img("canvue-angle-right", "Totem on wheels, angled from the other side", 1120, 1400),
     ],
     models: [
-      { name: "Vue 3201", size: 32, pixels: "768 × 1366", brightness: 300, dimensions: "18.01 × 53.16 × 2.25 in", netWeight: "16.5 kg", grossWeight: "19.7 kg" },
-      { name: "Vue Pro 4301", size: 43, pixels: "1080 × 1920", brightness: 350, note: "With wheels", dimensions: "22.06 × 67.01 × 2.50 in", netWeight: "34.5 kg", grossWeight: "39.1 kg" },
-      { name: "Vue Pro+ 5001", size: 50, pixels: "2160 × 3840", brightness: 380, note: "With wheels", dimensions: "26 × 69 × 2.50 in", netWeight: "45 kg", grossWeight: "50 kg" },
-      { name: "Vue Mini 5501", size: 55, pixels: "2160 × 3840", brightness: 380, note: "With wheels", dimensions: "28 × 69 × 2.50 in", netWeight: "47 kg", grossWeight: "50 kg" },
-      { name: "Vue Max 5501", size: 55, pixels: "2160 × 3840", brightness: 380, note: "With wheels", dimensions: "28.06 × 80 × 2.50 in", netWeight: "49 kg", grossWeight: "54.7 kg" },
-      { name: "Vue Max+ 6501", size: 65, pixels: "2160 × 3840", brightness: 380, note: "With wheels", dimensions: "33 × 80 × 2.50 in", netWeight: "57 kg", grossWeight: "64 kg" },
+      { name: "Totem 3201", size: 32, pixels: "768 × 1366", brightness: 300, dimensions: "18.01 × 53.16 × 2.25 in", netWeight: "16.5 kg", grossWeight: "19.7 kg" },
+      { name: "Totem Pro 4301", size: 43, pixels: "1080 × 1920", brightness: 350, note: "With wheels", dimensions: "22.06 × 67.01 × 2.50 in", netWeight: "34.5 kg", grossWeight: "39.1 kg" },
+      { name: "Totem Pro+ 5001", size: 50, pixels: "2160 × 3840", brightness: 380, note: "With wheels", dimensions: "26 × 69 × 2.50 in", netWeight: "45 kg", grossWeight: "50 kg" },
+      { name: "Totem Mini 5501", size: 55, pixels: "2160 × 3840", brightness: 380, note: "With wheels", dimensions: "28 × 69 × 2.50 in", netWeight: "47 kg", grossWeight: "50 kg" },
+      { name: "Totem Max 5501", size: 55, pixels: "2160 × 3840", brightness: 380, note: "With wheels", dimensions: "28.06 × 80 × 2.50 in", netWeight: "49 kg", grossWeight: "54.7 kg" },
+      { name: "Totem Max+ 6501", size: 65, pixels: "2160 × 3840", brightness: 380, note: "With wheels", dimensions: "33 × 80 × 2.50 in", netWeight: "57 kg", grossWeight: "64 kg" },
     ],
     resolutions: ["HD", "Full HD", "4K Ultra HD"],
     apps: ALL_APPS,
@@ -434,6 +433,8 @@ export const signageComparison: { question: string; digital: string; traditional
 
 /** DisplayNode: the signage management platform the store links to (opens in a new tab). */
 export const DISPLAYNODE_URL = "https://displaynode.cloud/";
+/** The same destination, written the way a link label should read. One source of truth. */
+export const DISPLAYNODE_HOST = new URL(DISPLAYNODE_URL).host;
 export const DISPLAYNODE_NAME = "DisplayNode";
 /** Headline and tagline as published on displaynode.cloud. */
 export const displayNodeHeadline = "Every screen. One command center.";

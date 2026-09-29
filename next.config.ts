@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // next/image re-encodes whatever it is given, and its default is q=75. The hero photography is
+    // full-bleed and already compressed once on the way in, so 75 was a visible second loss. Next
+    // requires every quality used in the app to be allowlisted here.
+    qualities: [75, 90],
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       // Catalogue images imported from dcat.shop live in this Shopify store's CDN folder.
@@ -25,10 +29,13 @@ const nextConfig: NextConfig = {
         "candesk-tab": "desk-tab",
         "candesk-wid": "desk-wid",
         candesk: "desk",
-        canlit: "lit",
+        canlit: "lollipop-standee",
+        lit: "lollipop-standee",
         canwalk: "walk",
-        canmount: "mount",
-        canvue: "vue",
+        canmount: "wall-mount",
+        mount: "wall-mount",
+        canvue: "totem",
+        vue: "totem",
         cannx: "nx",
         can: "easel",
       }).map(([from, to]) => ({

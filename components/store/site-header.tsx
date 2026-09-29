@@ -31,7 +31,7 @@ import {
   placements,
   series,
   sizeRange,
-  SITE_URL,
+  DISPLAYNODE_HOST,
   WARRANTY,
   type Placement,
 } from "@/lib/data/displays";
@@ -54,7 +54,7 @@ const placementIcon: Record<Placement, React.ReactNode> = {
   desk: <Tablet aria-hidden />,
 };
 
-const spotlight = ["vue", "easel", "mount", "desk-touch"].map((slug) => series.find((s) => s.slug === slug)!);
+const spotlight = ["totem", "easel", "wall-mount", "desk-touch"].map((slug) => series.find((s) => s.slug === slug)!);
 
 function isActive(pathname: string, href: string) {
   if (href.includes("#")) return false;
@@ -98,12 +98,12 @@ function UtilityStrip() {
           </a>
         </p>
         <a
-          href={`https://${SITE_URL}`}
+          href={DISPLAYNODE_URL}
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-1 transition-colors duration-(--dur-fast) hover:text-fg-on-contrast"
         >
-          {SITE_URL}
+          {DISPLAYNODE_HOST}
           <ArrowUpRight aria-hidden className="size-icon-sm" />
         </a>
       </div>

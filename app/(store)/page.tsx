@@ -37,16 +37,17 @@ const valueProps = [
   { icon: <BadgeCheck aria-hidden />, title: WARRANTY, text: "On every display" },
 ];
 
-const featured = ["vue", "easel", "mount", "lit", "walk", "desk-touch"]
+const featured = ["totem", "easel", "wall-mount", "lollipop-standee", "walk", "desk-touch"]
   .map((slug) => series.find((s) => s.slug === slug)!)
   .filter(Boolean);
 
 export default function HomePage() {
   return (
-    <div className="container-ds flex flex-col gap-(--section-gap)">
-      <div className="flex flex-col gap-5">
-        <HomeHero />
+    <>
+      {/* The hero is bezel-less: it sits outside container-ds and flush under the header. */}
+      <HomeHero />
 
+      <div className="container-ds flex flex-col gap-(--section-gap) pt-6">
         <ul
           aria-label="Why digital signage"
           className="grid gap-x-6 gap-y-5 px-1 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-border-subtle lg:[&>li+li]:pl-6"
@@ -61,7 +62,6 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
-      </div>
 
       <section aria-label="Shop by placement">
         <SectionHeader title="Which display is" muted="right for you?" description="Different styles, for different spaces." href="/products" linkLabel="All displays" />
@@ -231,6 +231,7 @@ export default function HomePage() {
           <Link href="/contact">Get a quote</Link>
         </Button>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

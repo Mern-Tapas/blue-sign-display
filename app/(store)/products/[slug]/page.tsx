@@ -34,7 +34,7 @@ export default async function SeriesPage({ params }: PageProps<"/products/[slug]
   const hasDetails = s.models.some((m) => m.dimensions);
 
   return (
-    <div className="container-ds flex flex-col gap-(--section-gap)">
+    <div className="container-ds flex flex-col gap-(--section-gap) pt-8">
       <div className="flex flex-col gap-6">
         <Breadcrumbs
           items={[

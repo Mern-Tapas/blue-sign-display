@@ -7,7 +7,7 @@ export default function StoreLayout({ children }: LayoutProps<"/">) {
     <div className="flex min-h-full flex-1 flex-col">
       <SkipLink />
       <SiteHeader />
-      <main id="main" className="flex-1 pt-8 pb-16">
+      <main id="main" className="flex-1 pb-16">
         {children}
       </main>
       <SiteFooter />

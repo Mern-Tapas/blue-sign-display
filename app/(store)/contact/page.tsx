@@ -23,7 +23,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
   const defaultModel = Array.isArray(model) ? model[0] : model;
 
   return (
-    <div className="container-ds flex flex-col gap-8">
+    <div className="container-ds flex flex-col gap-8 pt-8">
       <div className="flex flex-col gap-4">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Request a quote" }]} />
         <div>

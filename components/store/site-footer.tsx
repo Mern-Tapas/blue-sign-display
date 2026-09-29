@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { DISPLAYNODE_NAME, DISPLAYNODE_URL, placements, series, SITE_URL, WARRANTY } from "@/lib/data/displays";
+import { DISPLAYNODE_HOST, DISPLAYNODE_NAME, DISPLAYNODE_URL, placements, series, WARRANTY } from "@/lib/data/displays";
 
 type FooterLink = { label: string; href: string; external?: boolean };
 
@@ -73,12 +73,12 @@ export function SiteFooter() {
             {/* Inline in a sentence, so the target grows via hit-area (coarse pointers only,
                 no layout shift) rather than by becoming a block. */}
             <a
-              href={`https://${SITE_URL}`}
+              href={DISPLAYNODE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="hit-area relative rounded-xs underline-offset-2 transition-colors duration-(--dur-fast) hover:text-fg-on-contrast hover:underline"
             >
-              {SITE_URL}
+              {DISPLAYNODE_HOST}
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </p>

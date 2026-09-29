@@ -45,7 +45,7 @@ export default async function CatalogueProductPage({ params }: PageProps<"/catal
   const quoteHref = `/contact?model=${encodeURIComponent(p.title)}`;
 
   return (
-    <div className="container-ds flex flex-col gap-(--section-gap)">
+    <div className="container-ds flex flex-col gap-(--section-gap) pt-8">
       <div className="flex flex-col gap-6">
         <Breadcrumbs
           items={[

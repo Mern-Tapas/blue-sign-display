@@ -105,3 +105,47 @@
   the client produces and React logs a hydration mismatch on every reduced-motion load. Branch the
   `transition` instead and let the `motion-reduce:filter-none!/transform-none!` guard flatten the
   start values — same behaviour, no mismatch.
+
+## Full-bleed sections inside a container'd page (2026-09-28, session 4)
+- **Break a section out of `container-ds` by restructuring the page, not with a negative margin.**
+  The home page is now a fragment: `<HomeHero />` first, then a `container-ds` wrapper holding
+  everything else. A `-mx-[calc((100vw-100%)/2)]` breakout would have had to guess the scrollbar
+  width and would still have clipped under `overflow-hidden`.
+- **Re-align the copy to the page gutter with a *percentage* padding on the full-bleed section.**
+  `padding-left: max(var(--gutter), calc((100% - var(--container-max))/2 + var(--gutter)))` on the
+  section reproduces `container-ds`'s left content edge exactly (measured: copy x = 24 / 24 / 84 /
+  324 at 1024 / 1280 / 1440 / 1920, against the value-prop row's 28 / 28 / 88 / 328 — the 4px is the
+  row's own `px-1`). It must be a percentage of the section's containing block (`<main>`, i.e. the
+  viewport content box) and **not** `100vw`: with classic Windows scrollbars `100vw` is ~15px wider
+  than the content box, which both misaligns the copy and can overflow. The same expression put on
+  the *child* would resolve against the grid area instead, so it belongs on the section.
+- **Don't put a fixed track width and the gutter inset on the same element.** With the inset as
+  section padding, `grid-cols-[minmax(0,20rem)_minmax(0,1fr)]` measures the copy column from the
+  gutter, not from the viewport edge, so the column never has to absorb a 324px pad at 1920.
+- **Moving `pt-8` off `<main>`:** it went onto each route's own `container-ds` root (5 routes). Net
+  vertical position is unchanged — the padding used to be outside the child's border box and is now
+  inside it, and the child has no background or border, so nothing moves. Verified on all 6 routes
+  at 6 widths in both themes.
+
+## Seams and crops in a split hero (2026-09-28, session 4)
+- **A split layout removes the contrast/brightness trade entirely.** Session 3 proved a full-bleed
+  scrim always pays for text contrast in product brightness (standees down to 26% of raw). With the
+  copy on its own solid `#240c13` panel the measured ratios are 18.47:1 (headline, pure white) and
+  11.88:1 (sub-paragraph, `white/80` compositing to 211,206,208) — identical at every width, because
+  the panel is solid. Worth confirming from pixels anyway; it costs one screenshot.
+- **The percentage-scrim gotcha survives the rewrite, in the other direction.** The scrim is gone but
+  the *seam blend* inherited the same bug: `18%` of the photo column is 122px at 1024 and 218px at
+  1920, and the leftmost standee sits 26-62px inside that edge, so it was dimmed at every desktop
+  width. Anything anchored to a photo edge is protecting or blending a **fixed** distance and should
+  be written in px. Here 32px: under the nearest product pixel at every width, and the leading 120px
+  strip keeps 97-100% of its p90 luminance.
+- **Measure the seam by scanning across it, not by eye on a full-page shot.** Step the sampler
+  ±40px through the boundary and look at the largest single step: a real band shows as one big jump,
+  a clean blend is monotonic. A 3x `clip` screenshot of a 200px strip is what actually settles
+  whether an edge reads as a cut — at 1x the 1280 floor/panel edge looked fine and at 3x it was a
+  cliff.
+- **Re-derive the crop axis after *every* layout change, not once.** Same source (1376x768), three
+  different answers this session: full-bleed overlay, split inside the container, split full-bleed.
+  In the final layout the overflow axis flips twice across the range — X at 360/390, Y at 768 (the
+  `sm:aspect-[2/1]` band is wider than the source), X again at 1024-1280, Y from 1440. An
+  `object-position` argued from the previous layout's numbers is worse than no argument.

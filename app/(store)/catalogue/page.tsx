@@ -22,7 +22,7 @@ export default async function CataloguePage({ searchParams }: PageProps<"/catalo
   const results = searchCatalogue({ query, category: current?.slug });
 
   return (
-    <div className="container-ds flex flex-col gap-8">
+    <div className="container-ds flex flex-col gap-8 pt-8">
       <div className="flex flex-col gap-4">
         <Breadcrumbs
           items={[
